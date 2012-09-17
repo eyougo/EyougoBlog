@@ -9,14 +9,14 @@ import org.apache.commons.logging.LogFactory;
 
 import com.eyougo.blog.base.cache.exception.CacheException;
 
-public abstract class ObjectCache{
+public abstract class ObjectCache<T,E>{
 	private static final Log LOG = LogFactory.getLog(ObjectCache.class);
     private String name = null;
-    protected Map collection = null;
+    protected Map<T,E> collection = null;
     
     public ObjectCache(String cacheName) {
         this.name = cacheName;
-        collection = new HashMap();
+        collection = new HashMap<T,E>();
         try {
 			CacheList.getInstance().addCache(this);
 		} catch (CacheException e) {
@@ -25,26 +25,26 @@ public abstract class ObjectCache{
 		}
     }
     
-    public void put(Object key, Object value)
+    public void put(T key, E value)
     {
         collection.put(key,value);
     }
     
-    public Object get(Object key)
+    public E get(T key)
     {
         return collection.get(key);
     }
     
-    public void remove(Object key){
+    public void remove(T key){
     	collection.remove(key);
     }
 
-    public Iterator valuesIterator()
+    public Iterator<E> valuesIterator()
     {
         return collection.values().iterator();
     }
     
-    public Iterator keysIterator()
+    public Iterator<T> keysIterator()
     {
         return collection.keySet().iterator();
     }

@@ -7,27 +7,27 @@ import com.eyougo.blog.entity.Blog;
 import com.eyougo.blog.entity.Category;
 
 /**
- * ÈÕÖ¾³Ö¾Ã²ã
+ * æ—¥å¿—æŒä¹…å±‚
  * @author MeiHongyuan
  *
  */
 public interface BlogDao {
 	/**
-	 * ±£´æÈÕÖ¾
+	 * ä¿å­˜æ—¥å¿—
 	 * @param blog
 	 * 					Blog
 	 * @return Blog
 	 */
 	Blog saveBlog(Blog blog);
 	/**
-	 * ¸ù¾İÈÕÖ¾Id²éÑ¯³öÈÕÖ¾ĞÅÏ¢
+	 * æ ¹æ®æ—¥å¿—IdæŸ¥è¯¢å‡ºæ—¥å¿—ä¿¡æ¯
 	 * @param blogId
 	 * 					Integer
 	 * @return Blog
 	 */
 	Blog findBlogById(Integer blogId);
 	/**
-	 * ¸ù¾İÅÅĞòºÍ·ÖÒ³Ìõ¼ş²éÑ¯ÈÕÖ¾ĞÅÏ¢
+	 * æ ¹æ®æ’åºå’Œåˆ†é¡µæ¡ä»¶æŸ¥è¯¢æ—¥å¿—ä¿¡æ¯
 	 * @param op
 	 * @param firstResult
 	 * @param maxResults
@@ -36,7 +36,7 @@ public interface BlogDao {
 			int firstResult, int maxResults);
 	
 	/**
-	 * ¸ù¾İËùÊôÀà±ğ£¬ÅÅĞòºÍ·ÖÒ³Ìõ¼ş²éÑ¯ÈÕÖ¾ĞÅÏ¢
+	 * æ ¹æ®æ‰€å±ç±»åˆ«ï¼Œæ’åºå’Œåˆ†é¡µæ¡ä»¶æŸ¥è¯¢æ—¥å¿—ä¿¡æ¯
 	 * @param category
 	 * @param op
 	 * @param firstResult
@@ -46,7 +46,7 @@ public interface BlogDao {
 	List<Blog> findBlogListByCategory(Category category, OrderProperty[] op, 
 			int firstResult, int maxResults);
 	/**
-	 * È¡µÃËùÓĞÈÕÖ¾µÄÊıÁ¿
+	 * å–å¾—æ‰€æœ‰æ—¥å¿—çš„æ•°é‡
 	 * @return long
 	 */
 	long getAllBlogNum();
@@ -82,16 +82,16 @@ public interface BlogDao {
 	void deleteBlog(Blog blog);
 	
 	/**
-	 * »ñµÃËùÓĞÓë¸ø¶¨blogÀàËÆµÄBlog£¬È»ºó°´propertyNames½øĞĞ·Ö×éÍ³¼ÆÊıÁ¿
+	 * è·å¾—æ‰€æœ‰ä¸ç»™å®šblogç±»ä¼¼çš„Blogï¼Œç„¶åæŒ‰propertyNamesè¿›è¡Œåˆ†ç»„ç»Ÿè®¡æ•°é‡
 	 * @param blog
 	 * @param propertyNames
 	 * @return
 	 */
-	////2.0Ó¦¸ÃÖØ¹¹Õâ¸ö·½·¨£¬×ö³É·ºĞÍDao·½Ê½£¬²¢¼ÓÈëËÑË÷Ìõ¼ş
-	public List findLikeBlogNumGroupByProperties(Blog blog,String[] propertyNames );
+	////2.0åº”è¯¥é‡æ„è¿™ä¸ªæ–¹æ³•ï¼Œåšæˆæ³›å‹Daoæ–¹å¼ï¼Œå¹¶åŠ å…¥æœç´¢æ¡ä»¶
+	public List<Blog> findLikeBlogNumGroupByProperties(Blog blog,String[] propertyNames );
 	
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄÅÅĞòË³Ğò»ñµÃ¸ø¶¨BlogÌí¼ÓÊ±¼äÖ®Ç°µÄµÚÒ»¸öBlog¶ÔÏó£¬²»¿¼ÂÇÀà±ğ
+	 * æ ¹æ®æŒ‡å®šçš„æ’åºé¡ºåºè·å¾—ç»™å®šBlogæ·»åŠ æ—¶é—´ä¹‹å‰çš„ç¬¬ä¸€ä¸ªBlogå¯¹è±¡ï¼Œä¸è€ƒè™‘ç±»åˆ«
 	 * @param blog
 	 * @param op
 	 * @return
@@ -99,7 +99,7 @@ public interface BlogDao {
 	public Blog findBlogBeforeThisBlog(Blog blog,OrderProperty[] op);
 	
 	/**
-	 * ¸ù¾İÖ¸¶¨µÄÅÅĞòË³Ğò»ñµÃ¸ø¶¨BlogÌí¼ÓÊ±¼äÖ®ºóµÄµÚÒ»¸öBlog¶ÔÏó£¬²»¿¼ÂÇÀà±ğ
+	 * æ ¹æ®æŒ‡å®šçš„æ’åºé¡ºåºè·å¾—ç»™å®šBlogæ·»åŠ æ—¶é—´ä¹‹åçš„ç¬¬ä¸€ä¸ªBlogå¯¹è±¡ï¼Œä¸è€ƒè™‘ç±»åˆ«
 	 * @param blog
 	 * @param op
 	 * @return

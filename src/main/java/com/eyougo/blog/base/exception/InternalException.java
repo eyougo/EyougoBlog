@@ -2,30 +2,31 @@ package com.eyougo.blog.base.exception;
 
 public class InternalException extends BaseException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6209642518495365637L;
+
+	public InternalException() {
+		super();
+	}
+
+	public InternalException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	public InternalException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
 	public InternalException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
-	public InternalException(String message, String errorCode) {
-		super(message, errorCode);
-		// TODO Auto-generated constructor stub
+	public InternalException(Throwable cause) {
+		super(cause);
 	}
 
-	public InternalException(String message, String errorCode, String[] stubArgs) {
-		super(message, errorCode, stubArgs);
-		// TODO Auto-generated constructor stub
-	}
-
-	public InternalException(String message, String errorCode, Throwable ex) {
-		super(message, errorCode, ex);
-		// TODO Auto-generated constructor stub
-	}
-
-	public InternalException(String message, String errorCode, Throwable ex,
-			String[] stubArgs) {
-		super(message, errorCode, ex, stubArgs);
-		// TODO Auto-generated constructor stub
-	}
 
 }

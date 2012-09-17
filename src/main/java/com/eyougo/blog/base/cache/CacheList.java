@@ -65,7 +65,6 @@ public class CacheList {
 			Object value) throws CacheException {
 		ObjectCache cache = getCache(cachename);
 		cache.remove(key);
-
 		cache.put(key, value);
 	}
 
@@ -73,7 +72,7 @@ public class CacheList {
 		ObjectCache cache = caches.get(cacheName);
 		if (cache == null) {
 			throw new CacheException("The cache named '" + cacheName + "' in CacheList is null, please check if the cache initialize success", 
-					"error.base.cache.getCache",  null);
+					null);
 		}
 		return cache;
 	}

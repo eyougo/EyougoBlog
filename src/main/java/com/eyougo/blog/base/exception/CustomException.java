@@ -1,29 +1,47 @@
 package com.eyougo.blog.base.exception;
 
 public class CustomException extends BaseException {
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2300604897682818872L;
+	
+	private String errorCode;
+	private String[] errorParams;
 	public CustomException(String message) {
 		super(message);
 	}
 
-	public CustomException(String message, String errorCode, String[] stubArgs) {
-		super(message, errorCode, stubArgs);
-		// TODO Auto-generated constructor stub
+	public CustomException(String message, String errorCode, String[] errorParams) {
+		super(message);
+		this.errorCode = errorCode;
+		this.errorParams = errorParams;
 	}
 
-	public CustomException(String message, String errorCode, Throwable ex,
-			String[] stubArgs) {
-		super(message, errorCode, ex, stubArgs);
-		// TODO Auto-generated constructor stub
+	public CustomException(String message, Throwable ex, String errorCode, 
+			String[] errorParams) {
+		super(message, ex);
+		this.errorCode = errorCode;
+		this.errorParams = errorParams;
 	}
 
-	public CustomException(String message, String errorCode, Throwable ex) {
-		super(message, errorCode, ex);
-		// TODO Auto-generated constructor stub
+	public CustomException(String message, Throwable ex, String errorCode) {
+		super(message, ex);
+		this.errorCode = errorCode;
 	}
 
 	public CustomException(String message, String errorCode) {
-		super(message, errorCode);
-		// TODO Auto-generated constructor stub
+		super(message);
+		this.errorCode = errorCode;
 	}
+
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	public String[] getErrorParams() {
+		return errorParams;
+	}
+	
 }

@@ -141,7 +141,7 @@ public class BlogDaoImpl implements BlogDao {
 		return (Integer)criteria.uniqueResult();
 	}
 	
-	public List findLikeBlogNumGroupByProperties(Blog blog,String[] propertyNames ){
+	public List<Blog> findLikeBlogNumGroupByProperties(Blog blog,String[] propertyNames ){
 		Criteria criteria = this.getSessionFactory().getCurrentSession().createCriteria(Blog.class);
 		if(blog!=null){
 			Example example = Example.create(blog).excludeNone().excludeZeroes();
@@ -156,7 +156,7 @@ public class BlogDaoImpl implements BlogDao {
 			}	
 		}
 		criteria=criteria.setProjection( projectionList ) ;
-		List list = criteria.list();
+		List<Blog> list = criteria.list();
 		return list;
 	}
 	

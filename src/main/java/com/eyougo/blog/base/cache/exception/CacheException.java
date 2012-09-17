@@ -4,7 +4,7 @@ import com.eyougo.blog.base.exception.BaseException;
 
 
 public class CacheException extends BaseException {
-	public CacheException(String message, String errorCode, Throwable ex) {
-		super(message, errorCode, ex);
+	public CacheException(String message, Throwable ex) {
+		super(message, ex);
 	}
 }
