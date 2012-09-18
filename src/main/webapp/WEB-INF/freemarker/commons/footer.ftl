@@ -1,0 +1,1 @@
+<div id="foot"><@s.property value="blogConfigs.BLOGCOPYRIGHT" escape="false"/></div>
