@@ -138,7 +138,7 @@ public class BlogDaoImpl implements BlogDao {
 		}
 		
 		criteria.setProjection(Projections.rowCount());
-		return (Integer)criteria.uniqueResult();
+		return (Long)criteria.uniqueResult();
 	}
 	
 	public List<Blog> findLikeBlogNumGroupByProperties(Blog blog,String[] propertyNames ){

@@ -2,11 +2,12 @@ package com.eyougo.blog.web.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eyougo.blog.biz.BlogBiz;
 import com.eyougo.blog.comm.Pager;
@@ -17,6 +18,7 @@ import com.eyougo.blog.entity.Category;
 @RequestMapping(value="/blog")
 public class BlogController {
 
+	@Autowired
 	private BlogBiz blogBiz;
 	
 	@RequestMapping(value="/list/{categoryId}-{page}")
@@ -25,7 +27,7 @@ public class BlogController {
 		pager.setPage(page);
 		Blog blog = new Blog();
 		blog.setIsDraft(false);
-		if (categoryId != null) {
+		if (categoryId != 0) {
 			Category category = new Category();
 			category.setId(categoryId);
 			blog.setCategory(category);
@@ -33,6 +35,12 @@ public class BlogController {
 		List<Blog> blogList = blogBiz.getBlogsLikeBlog(blog, pager);
 		model.addAttribute("blogList", blogList);
 		return "/blog_list";
+	}
+	
+	@RequestMapping(value="/hello")
+	@ResponseBody
+	public String hello(){
+		return "hello";
 	}
 
 	public void setBlogBiz(BlogBiz blogBiz) {

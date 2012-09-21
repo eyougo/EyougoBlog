@@ -10,12 +10,7 @@ public class InternalException extends BaseException {
 	public InternalException() {
 		super();
 	}
-
-	public InternalException(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
+	
 	public InternalException(String message, Throwable cause) {
 		super(message, cause);
 	}
