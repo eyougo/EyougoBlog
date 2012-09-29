@@ -1,5 +1,5 @@
-body { font-family: Arial,"Century Gothic",sans-serif, "Gill Sans", "微软雅黑";
-	   font-size:11px;
+body { font-family: "微软雅黑",Arial,"Century Gothic",sans-serif, "Gill Sans";
+	   font-size:14px;
 	   color:#626262;
 	   margin: 0;
 	   padding: 0;
@@ -21,7 +21,7 @@ p,h1,h2,h3,h4,h5,h6,ol,ul {
 	margin: 0px;
 	padding: 0px;
 	font-weight:normal;
-	font-size: 11px;
+	font-size: 14px;
 	}
 	
 p{ line-height:1.8em;
@@ -30,12 +30,12 @@ p{ line-height:1.8em;
    
 h1{font-family:sans-serif;
    font-weight:bold;
-   padding:6px;
+   padding:8px;
    padding-left:20px;
-   background:url(../images/h2.gif) no-repeat 7px 10px;
+   background:url(../images/h2.gif) no-repeat 7px 12px;
   }
 h2{padding:4px;
-   padding-left:8px;
+   padding-left:10px;
     background:#F8F8F8;
 	border:1px solid #DCDCDC;
    }
@@ -49,8 +49,8 @@ h4{border-bottom:1px solid #deecf5;
    height:24px;
    }
 	
-h5{padding:6px;
-   font-size:12px;
+h5{padding:7px;
+   font-size:16px;
    font-weight:bold;
    color:#0e9bfd;
    letter-spacing:0.05em;
@@ -67,7 +67,7 @@ h6{padding:6px;
 #container{
            margin-right:auto;
 		   margin-left:auto;
-		   width:800px;
+		   width:980px;
            height:100%; 
 		   text-align:center;
 		   background: url(../images/bg.gif) repeat-y top center;
@@ -92,11 +92,11 @@ h6{padding:6px;
 /* sidebar */
 /*********************/
 #sidebar{
-         float:left;
-         clear:left;
+         float:right;
+         clear:right;
 	     display:inline;
 	     overflow:hidden;
-	     width:190px;
+	     width:240px;
 	     height:100%;
 		 }
 
@@ -117,8 +117,8 @@ h6{padding:6px;
 /*********************/
 /* menu */
 /*********************/
-#menu{height:25px;
-	  width:800px;
+#menu{height:30px;
+	  width:980px;
 	  background:#262626;
 	 }
 #menu ul{
@@ -129,7 +129,7 @@ h6{padding:6px;
 	        display: block;
 			padding-top:1px;
 			line-height:25px;
-			width:80px;
+			width:100px;
 		 }
 #menu li a {
           display: block;
@@ -153,13 +153,13 @@ h6{padding:6px;
 		    list-style-type:none;
 		    display: block;
 		   }
-#sidebar ul li{line-height:20px;
+#sidebar ul li{line-height:28px;
                padding-left:12px;
                overflow:hidden;
                text-overflow:ellipsis;
                white-space:nowrap;
-               width:165px;
-               background:url(../images/dd.gif) no-repeat left 8px;
+               width:205px;
+               background:url(../images/dd.gif) no-repeat left 12px;
 		   }
 #sidebar ul li img{
 			  	border:0px;
@@ -193,17 +193,19 @@ h6{padding:6px;
 /* mainbody */
 /*********************/
 #mainbody{
-          float:right;
-          clear:right;
+          float:left;
+          clear:left;
 	      display:inline;
           overflow:hidden;
-          width:600px;
+          width:730px;
 	      height:100%;
 		  padding:4px;
-	     
 		  }
 #nr{height:100%;
-    
+    	padding:4px;
+	}
+.sm{
+    	padding:4px;
 	}
 .tp{text-align:center;
     }
@@ -217,7 +219,7 @@ h6{padding:6px;
 /* footer */
 /*********************/
 #foot{color:#e7e8ea;
-      width:800px;
+      width:980px;
 	  line-height:28px;
       text-align:center;
       clear:both;

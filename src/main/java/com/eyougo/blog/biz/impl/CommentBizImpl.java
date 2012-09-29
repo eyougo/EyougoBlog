@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.eyougo.blog.base.exception.InternalException;
+import com.eyougo.blog.biz.CommentBiz;
 import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.comm.OrderProperty;
 import com.eyougo.blog.comm.Pager;
@@ -15,11 +16,15 @@ import com.eyougo.blog.dao.CommentDao;
 import com.eyougo.blog.entity.Blog;
 import com.eyougo.blog.entity.Comment;
 
-public class CommentBizImpl {
+public class CommentBizImpl implements CommentBiz {
 	private static final Log log = LogFactory.getLog(CommentBizImpl.class);
 	private CommentDao commentDao;
 	private BlogDao blogDao;
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#saveComment(com.eyougo.blog.entity.Comment)
+	 */
+	@Override
 	public Comment saveComment(Comment comment) throws InternalException{
 		try{
 			comment = commentDao.saveComment(comment);
@@ -32,11 +37,19 @@ public class CommentBizImpl {
 		}	
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#getCommentById(java.lang.Integer)
+	 */
+	@Override
 	public Comment getCommentById(Integer commentId){
 			Comment comment = this.getCommentDao().findCommentById(commentId);
 			return comment;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#getCommentsByBlog(com.eyougo.blog.entity.Blog, com.eyougo.blog.comm.Pager)
+	 */
+	@Override
 	public List<Comment> getCommentsByBlog(Blog blog,Pager pager) {
 			if (pager.getTotalNum() == -1) {
 				pager.setTotalNum(this.getCommentDao().getCommentNumByBlog(blog));
@@ -45,12 +58,20 @@ public class CommentBizImpl {
 			return comments;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#getRecentComments(int)
+	 */
+	@Override
 	public List<Comment> getRecentComments(int recentNum){
 			OrderProperty[] op = {new OrderProperty("commentDate",EyougoConstant.ORDER_DESC)};
 			List<Comment> comments = this.getCommentDao().findCommentsByBlog(null, op, 0, recentNum);
 			return comments;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#deleteComments(java.util.List)
+	 */
+	@Override
 	public int deleteComments(List<String> commentIds) throws InternalException{
 		int sucNum = 0;
 		try {
@@ -71,6 +92,10 @@ public class CommentBizImpl {
 		}	
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.eyougo.blog.biz.impl.CommentBiz#deleteCommentById(java.lang.Integer)
+	 */
+	@Override
 	public boolean deleteCommentById(Integer commentId) throws InternalException{
 		boolean deleteSuccess = false;
 		try{

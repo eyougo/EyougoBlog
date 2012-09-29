@@ -3,6 +3,7 @@ package com.eyougo.blog.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import com.eyougo.blog.entity.Category;
 @RequestMapping(value="/blog")
 public class BlogController {
 
-	@Autowired
 	private BlogBiz blogBiz;
 	
 	@RequestMapping(value="/list/{categoryId}-{page}")
@@ -48,6 +48,8 @@ public class BlogController {
 		return "hello";
 	}
 
+	@Autowired
+	@Required
 	public void setBlogBiz(BlogBiz blogBiz) {
 		this.blogBiz = blogBiz;
 	}
