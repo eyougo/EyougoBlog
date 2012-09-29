@@ -1,1 +1,1 @@
-<div id="foot"><@s.property value="blogConfigs.BLOGCOPYRIGHT" escape="false"/></div>
+<div id="foot">Copyright &copy 2009-2010 EyouGo Studio <a href="http://www.miibeian.gov.cn" target="_blank">陕ICP备06002078号</a></div></div>

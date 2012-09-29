@@ -9,43 +9,42 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd  
         http://www.springframework.org/schema/mvc  
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-
-
 	<!-- 自动扫描的包名 -->
-	<context:component-scan base-package="com.eyougo.blog.web"></context:component-scan>
-
+	<context:component-scan base-package="com.eyougo.blog.web" />
 	<!-- 默认的注解映射的支持 -->
 	<mvc:annotation-driven />
-
 	<!-- 视图解释类 -->
 	<bean id="jspResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" /><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+		<property name="prefix" value="/WEB-INF/jsp" />
+		<property name="suffix" value="" /><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
-
 	<bean id="freemarkerResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="order" value="1" />
-		<property name="prefix" value="/WEB-INF/freemarker/" />
-		<property name="suffix" value=".ftl" />
+		<property name="prefix" value="" />
+		<property name="suffix" value="" />
 		<property name="contentType" value="text/html;charset=utf-8" />
 		<property name="viewClass">
 			<value>
-				org.springframework.web.servlet.view.freemarker.FreeMarkerView
+			    org.springframework.web.servlet.view.freemarker.FreeMarkerView
 			</value>
 		</property>
-		<property name="requestContextAttribute" value="rc"></property>
+		<property name="viewNames" value ="*.ftl" /> 
+		<property name="requestContextAttribute" value="rc" />
 	</bean>
-
-	<!-- 拦截器
-	<mvc:interceptors>
-		<bean class="com.core.mvc.MyInteceptor" />
-	</mvc:interceptors> -->
-
+	<!-- 这里定义freemarker.properties文件的加载，和后面的对应。 -->
+	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:freemarker.properties" />
+	</bean>
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="templateLoaderPath" value="/WEB-INF/freemarker" /> <!-- 模板加载路径 -->
+		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
+	</bean>
+	<!-- 拦截器 <mvc:interceptors> <bean class="com.core.mvc.MyInteceptor" /> </mvc:interceptors> -->
 	<!-- 对静态资源文件的访问 -->
 	<mvc:resources mapping="/images/**" location="/images/" cache-period="31556926" />
 	<mvc:resources mapping="/js/**" location="/js/" cache-period="31556926" />
 	<mvc:resources mapping="/css/**" location="/css/" cache-period="31556926" />
-
-</beans>   
+</beans>

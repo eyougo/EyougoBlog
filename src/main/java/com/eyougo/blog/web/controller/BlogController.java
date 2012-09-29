@@ -27,15 +27,20 @@ public class BlogController {
 		pager.setPage(page);
 		Blog blog = new Blog();
 		blog.setIsDraft(false);
+		Category category = new Category();
 		if (categoryId != 0) {
-			Category category = new Category();
 			category.setId(categoryId);
 			blog.setCategory(category);
+		}else{
+			category.setCategory("BLOG");
 		}
 		List<Blog> blogList = blogBiz.getBlogsLikeBlog(blog, pager);
 		model.addAttribute("blogList", blogList);
-		return "/blog_list";
+		model.addAttribute("category", category);
+		return "/blog_list.ftl";
 	}
+	
+	
 	
 	@RequestMapping(value="/hello")
 	@ResponseBody
