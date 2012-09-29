@@ -2,6 +2,7 @@ package com.eyougo.blog.web.controller;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -10,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eyougo.blog.biz.BlogBiz;
+import com.eyougo.blog.biz.CategoryBiz;
 import com.eyougo.blog.biz.CommentBiz;
 import com.eyougo.blog.biz.MessageBiz;
 import com.eyougo.blog.entity.Blog;
+import com.eyougo.blog.entity.Category;
 import com.eyougo.blog.entity.Comment;
 import com.eyougo.blog.entity.Message;
 
@@ -26,8 +29,11 @@ public class DecoratorController {
 
 	private MessageBiz messageBiz;
 	
+	private CategoryBiz categoryBiz;
+	
 	@RequestMapping(value="/sidebar")
 	public String sidebar(Model model){
+		Map<Category, Integer> categoryMap = categoryBiz.getCategorysAndPublishedBlogNum();
 		List<Blog> recentBlogList = blogBiz.getRecentPublishedBlogs(5);
 		model.addAttribute("recentBlogList", recentBlogList);
 		List<Comment> recentCommentList =  commentBiz.getRecentComments(5);
