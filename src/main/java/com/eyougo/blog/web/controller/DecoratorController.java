@@ -1,5 +1,7 @@
 package com.eyougo.blog.web.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,14 @@ public class DecoratorController {
 	@RequestMapping(value="/sidebar")
 	public String sidebar(Model model){
 		Map<Category, Integer> categoryMap = categoryBiz.getCategorysAndPublishedBlogNum();
+		List<Category> categoryList = new ArrayList<Category>();
+		Map<String, Integer> categoryNumMap = new HashMap<String, Integer>();
+		for (Category category : categoryMap.keySet()) {
+			categoryList.add(category);
+			categoryNumMap.put(category.getCategory(), categoryMap.get(category));
+		}
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("categoryNumMap", categoryNumMap);
 		List<Blog> recentBlogList = blogBiz.getRecentPublishedBlogs(5);
 		model.addAttribute("recentBlogList", recentBlogList);
 		List<Comment> recentCommentList =  commentBiz.getRecentComments(5);
@@ -59,7 +69,9 @@ public class DecoratorController {
 	}
 	
 	@RequestMapping(value="/main")
-	public String frame(){
+	public String frame(Model model){
+		List<Category> categoryList = categoryBiz.getAllCategorys();
+		model.addAttribute("categoryList", categoryList);
 		return "/decorators/main.ftl";
 	}
 
@@ -77,6 +89,11 @@ public class DecoratorController {
 	@Required
 	public void setMessageBiz(MessageBiz messageBiz) {
 		this.messageBiz = messageBiz;
+	}
+	@Autowired
+	@Required
+	public void setCategoryBiz(CategoryBiz categoryBiz) {
+		this.categoryBiz = categoryBiz;
 	}
 	
 	

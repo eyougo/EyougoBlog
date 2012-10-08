@@ -11,11 +11,11 @@
 			<div id="Categries">
 				<h1>Categries</h1>
 				<ul>
-					<@s.iterator id="category" value="categoryMap">
+					<#list categoryList as category>
 					<li>
-						<a href="/blog/list/${category.key.id}-1" title="${category.key.category}">${category.key.category}&nbsp;&nbsp;&nbsp;&nbsp;${category.value}</a>
+						<a href="${rc.getContextPath()}/blog/list/${category.id}-1" title="${category.category}">${category.category}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${categoryNumMap[category.category]}</a>
 					</li>
-					</@s.iterator>
+					</#list>
 					<li>
 						<a href="${rc.getContextPath()}/message/list/1" title="MESSAGES">MESSAGES&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					</li>

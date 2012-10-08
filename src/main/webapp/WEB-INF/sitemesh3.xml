@@ -6,5 +6,5 @@
 		<decorator>/sidebar</decorator>
 		<decorator>/main</decorator>
 	</mapping>
-	<mapping path="/admin/" exclude="true" />
+	<mapping path="/admin/*" exclude="true" />
 </sitemesh>

@@ -108,7 +108,7 @@ public class CategoryBizImpl implements CategoryBiz {
 			for (Iterator iterator2 = numList.iterator(); iterator2.hasNext();) {
 				Object[] object = (Object[]) iterator2.next();
 				if (((Category) object[1]).getId().equals(categoryId)) {
-					numMap.put(category, (Integer) object[0]);
+					numMap.put(category, ((Long) object[0]).intValue());
 				}
 			}
 		}
