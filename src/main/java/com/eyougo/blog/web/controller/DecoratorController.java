@@ -69,7 +69,7 @@ public class DecoratorController {
 	}
 	
 	@RequestMapping(value="/main")
-	public String frame(Model model){
+	public String main(Model model){
 		List<Category> categoryList = categoryBiz.getAllCategorys();
 		model.addAttribute("categoryList", categoryList);
 		return "/decorators/main.ftl";

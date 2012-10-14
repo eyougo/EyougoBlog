@@ -66,7 +66,7 @@ Input {
 		<p>
 			&nbsp;
 		</p>
-		<form name="adminLogin" action="${rc.getContextPath()}/admin/login/do" method="post">
+		<form name="adminLogin" action="${rc.getContextPath()}/admin/login" method="post">
 			<table width="585" border="0" align="center" cellpadding="0"
 				cellspacing="0">
 				<tr>

@@ -2,6 +2,8 @@ package com.eyougo.blog.biz.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogConfigBiz;
 import com.eyougo.blog.dao.BlogConfigDao;
@@ -33,6 +35,16 @@ public class BlogConfigBizImpl implements BlogConfigBiz{
 			throws InternalException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String findAdminPassword() {
+		return this.findBlogConfigValueById("ADMINPASSWORD");
+	}
+
+	@Required
+	public void setBlogConfigDao(BlogConfigDao blogConfigDao) {
+		this.blogConfigDao = blogConfigDao;
 	}
 
 }

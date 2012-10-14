@@ -16,4 +16,6 @@ public interface BlogConfigBiz {
 	String findBlogConfigValueById(String id);
 	
 	void saveBlogConfigs(List<BlogConfig> blogConfigList) throws InternalException;
+	
+	String findAdminPassword();
 }

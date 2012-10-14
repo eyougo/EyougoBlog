@@ -79,7 +79,7 @@
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
-
+	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
@@ -97,6 +97,8 @@
 		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
 	</aop:config>
 
+	<context:annotation-config/>
+	
 	<!-- Blog配置信息 -->
 	<!-- <bean id="blogConfigs" class="com.eyougo.blog.comm.BlogConfigs"> <constructor-arg> <ref bean="blogConfigBiz" /> </constructor-arg> </bean> -->
 	<!-- Dao层配置 -->
@@ -127,17 +129,21 @@
 	</bean>
 	
 	<bean id="messageBiz" class="com.eyougo.blog.biz.impl.MessageBizImpl"> 
-		<property name="messageDao" ref="messageDao"></property>
+		<property name="messageDao" ref="messageDao" />
 	</bean> 
 	
 	<bean id="commentBiz" class="com.eyougo.blog.biz.impl.CommentBizImpl">
-		<property name="commentDao" ref="commentDao"></property>
-		<property name="blogDao" ref="blogDao"></property> 
+		<property name="commentDao" ref="commentDao" />
+		<property name="blogDao" ref="blogDao" /> 
 	</bean> 
 	
 	<bean id="categoryBiz" class="com.eyougo.blog.biz.impl.CategoryBizImpl"> 
-		<property name="categoryDao" ref="categoryDao"></property>
-		<property name="blogDao" ref="blogDao"></property>
+		<property name="categoryDao" ref="categoryDao" />
+		<property name="blogDao" ref="blogDao" />
+	</bean>
+	
+	<bean id="blogConfigBiz" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl">
+	    <property name="blogConfigDao" ref="blogConfigDao" />
 	</bean>
 	<!-- <bean id="blogConfigBizTarget" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl"> <property name="blogConfigDao" ref="blogConfigDao"></property> </bean> <bean 
 		id="blogConfigBiz" parent="txProxyTemplate"> <property name="target" ref="blogConfigBizTarget" /> </bean> <bean id="messageBizTarget" class="com.eyougo.blog.biz.MessageBiz"> 
