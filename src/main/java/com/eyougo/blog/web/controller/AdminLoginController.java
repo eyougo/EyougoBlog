@@ -20,7 +20,6 @@ import com.eyougo.blog.util.EyougoStringUtil;
 @RequestMapping(value="/admin/login")
 public class AdminLoginController {
 	private BlogConfigBiz blogConfigBiz;
-
 	private ResourceBundleMessageSource messageSource;
 	
 	@Autowired
@@ -28,12 +27,18 @@ public class AdminLoginController {
 	public void setBlogConfigBiz(BlogConfigBiz blogConfigBiz) {
 		this.blogConfigBiz = blogConfigBiz;
 	}
-
+	
+	@Autowired
+	@Required
+	public void setMessageSource(ResourceBundleMessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(){
 		return "/admin/admin_login.ftl";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String post(@RequestParam String adminPassword, HttpSession session, Model model){
 		String vAdminPassword = blogConfigBiz.findAdminPassword();
@@ -41,7 +46,7 @@ public class AdminLoginController {
 			session.setAttribute("admin", "admin");
 			return "redirect:/admin/index";
 		}else{
-			model.addAttribute("error.adminPassword",messageSource.getMessage("error.adminPassword", null, Locale.getDefault()));
+			model.addAttribute("adminPasswordError",messageSource.getMessage("error.adminPassword", null, Locale.getDefault()));
 			return "/admin/admin_login.ftl";
 		}
 	}

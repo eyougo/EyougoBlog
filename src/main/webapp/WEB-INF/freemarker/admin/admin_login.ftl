@@ -94,6 +94,9 @@ Input {
 										onmouseover="this.style.background='#D6DFF7';"
 										onmouseout="this.style.background='#FFFFFF'"
 										onfocus="this.select(); "/>
+										<#if adminPasswordError??>
+											<br/>${adminPasswordError}
+										</#if>
 								</td>
 							</tr>
 							
