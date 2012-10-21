@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Required;
 
+import com.eyougo.blog.base.cache.CacheList;
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogConfigBiz;
+import com.eyougo.blog.comm.ConfigCache;
+import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.dao.BlogConfigDao;
 import com.eyougo.blog.entity.BlogConfig;
 
 public class BlogConfigBizImpl implements BlogConfigBiz{
 	private BlogConfigDao blogConfigDao;
+	private ConfigCache configCache;
 	
 	@Override
 	public List<BlogConfig> getAllBlogConfigs() {
@@ -26,8 +30,15 @@ public class BlogConfigBizImpl implements BlogConfigBiz{
 
 	@Override
 	public String findBlogConfigValueById(String id) {
-		BlogConfig blogConfig = this.blogConfigDao.findBlogConfigById(id);
-		return blogConfig.getConfigValue();
+		//先从缓存中找
+		String configValue = configCache.get(id);
+		//缓存没有
+		if (configValue == null) {
+			BlogConfig blogConfig = this.blogConfigDao.findBlogConfigById(id);
+			configValue = blogConfig.getConfigValue();
+		}
+		
+		return configValue;
 	}
 
 	@Override
@@ -38,10 +49,19 @@ public class BlogConfigBizImpl implements BlogConfigBiz{
 	}
 
 	@Override
-	public String findAdminPassword() {
+	public String getAdminPassword() {
 		return this.findBlogConfigValueById("ADMINPASSWORD");
 	}
-
+	@Override
+	public String getCopyRight(){
+		return this.findBlogConfigValueById(EyougoConstant.BLOG_COPYRIGHT);
+	}
+	
+	@Override
+	public String getOriginalNote(){
+		return this.findBlogConfigValueById(EyougoConstant.ORIGINAL_NOTE);
+	}
+	
 	@Required
 	public void setBlogConfigDao(BlogConfigDao blogConfigDao) {
 		this.blogConfigDao = blogConfigDao;

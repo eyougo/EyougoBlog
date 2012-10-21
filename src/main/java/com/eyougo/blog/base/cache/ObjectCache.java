@@ -18,6 +18,7 @@ public abstract class ObjectCache<T,E>{
         this.name = cacheName;
         collection = new HashMap<T,E>();
         try {
+    		this.loadData();
 			CacheList.getInstance().addCache(this);
 		} catch (CacheException e) {
 			e.printStackTrace();

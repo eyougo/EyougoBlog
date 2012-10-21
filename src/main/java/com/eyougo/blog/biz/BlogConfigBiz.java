@@ -17,5 +17,9 @@ public interface BlogConfigBiz {
 	
 	void saveBlogConfigs(List<BlogConfig> blogConfigList) throws InternalException;
 	
-	String findAdminPassword();
+	String getAdminPassword();
+	
+	String getCopyRight();
+	
+	String getOriginalNote();
 }

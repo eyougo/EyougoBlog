@@ -41,7 +41,7 @@ public class AdminLoginController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String post(@RequestParam String adminPassword, HttpSession session, Model model){
-		String vAdminPassword = blogConfigBiz.findAdminPassword();
+		String vAdminPassword = blogConfigBiz.getAdminPassword();
 		if (adminPassword!=null&&EyougoStringUtil.hash(adminPassword).equals(vAdminPassword)){
 			session.setAttribute("admin", "admin");
 			return "redirect:/admin/index";

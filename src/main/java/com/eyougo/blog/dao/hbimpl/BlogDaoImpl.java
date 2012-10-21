@@ -72,6 +72,7 @@ public class BlogDaoImpl implements BlogDao {
 			final OrderProperty[] op, int firstResult, int maxResults) {
 		Criteria c = this.getSessionFactory().getCurrentSession()
 				.createCriteria(Blog.class);
+		
 		if (category != null) {
 			c.add(Restrictions.eq("category", category));
 		}

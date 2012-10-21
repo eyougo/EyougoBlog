@@ -3,26 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><@s.property value="blog.title" /></title>
-<link href="<@s.url value="/css/neirong.css" includeParams="none"/>" rel="stylesheet" type="text/css" />
-<link href="<@s.url value="/js/syntaxhighlighter/styles/shCore.css" includeParams="none"/>" rel="stylesheet" type="text/css" />
-<link href="<@s.url value="/js/syntaxhighlighter/styles/shThemeDefault.css" includeParams="none"/>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<@s.url value="/fckeditor/fckeditor.js" includeParams="none"/>"> </script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shCore.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushCss.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushGroovy.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushCpp.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushJava.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushJScript.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushRuby.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushSql.js" includeParams="none"/>"></script>
-<script type="text/javascript" src="<@s.url value="/js/syntaxhighlighter/scripts/shBrushXml.js" includeParams="none"/>"></script>
+<title>${blog.title}</title>
+<link href="${rc.getContextPath()}/css/index.blog.css" rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/js/syntaxhighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+<link href="${rc.getContextPath()}/js/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${rc.getContextPath()}/fckeditor/fckeditor.js"> </script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushJava.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushRuby.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushSql.js"></script>
+<script type="text/javascript" src="${rc.getContextPath()}/js/syntaxhighlighter/scripts/shBrushXml.js"></script>
 <script type="text/javascript"> 
-		SyntaxHighlighter.config.clipboardSwf = '<@s.url value="/js/syntaxhighlighter/scripts/clipboard.swf" includeParams="none"/>';
+		SyntaxHighlighter.config.clipboardSwf = '${rc.getContextPath()}/js/syntaxhighlighter/scripts/clipboard.swf';
 		SyntaxHighlighter.all();
 		$(
 			function() { 
-				var sBasePath = "<@s.url value="/fckeditor/" includeParams="none"/>"  //获得fckeditor的路径 		
+				var sBasePath = "${rc.getContextPath()}/fckeditor/"  //获得fckeditor的路径 		
 				var oFCKeditor = new FCKeditor( 'comment.content' ) ; 
 				oFCKeditor.BasePath = sBasePath ; 
 				oFCKeditor.Width = "50%";
@@ -51,26 +51,26 @@
 <body>
 		<div id="mainbody">
 			<div id="tp">
-				<h2><b><a href="<@s.url value="/blog/view/%{blog.id}"/>"><@s.property value="blog.title" /></b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<@s.date name="blog.date" format="yyyy-MM-dd HH:mm:ss" /></h2>			
+				<h2><b><a href="${rc.getContextPath()}/blog/view/${blog.id}">${blog.title}</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<@s.date name="blog.date" format="yyyy-MM-dd HH:mm:ss" /></h2>			
 				<p>
-					<@s.property value="blog.content" escape="false"/>
+					${blog.content}
 				</p>
 				
 				<br>&nbsp;&nbsp;&nbsp;&nbsp;
-				<@s.if test="previousBlog!=null">
-				Previous:&nbsp;<a href="<@s.url value="/blog/view/%{previousBlog.id}"/>"><@s.property value="previousBlog.title"/></a>&nbsp;&nbsp;
-				</@s.if>
-				<@s.if test="NextBlog!=null">
-				Next:&nbsp;<a href="<@s.url value="/blog/view/%{nextBlog.id}"/>"><@s.property value="nextBlog.title"/></a>&nbsp;&nbsp;
-				</@s.if>
+				<#if previousBlog??>
+				Previous:&nbsp;<a href="${rc.getContextPath()}/blog/view/${previousBlog.id}">${previousBlog.title}</a>&nbsp;&nbsp;
+				</#if>
+				<#if NextBlog??>
+				Next:&nbsp;<a href="${rc.getContextPath()}/blog/view/${nextBlog.id}">${nextBlog.title}</a>&nbsp;&nbsp;
+				</#if>
 				<br>
 				<h3>
-					<a href="<@s.url value="/blog/list/%{blog.category.id}"/>">Category: <@s.property value="blog.category.category" /></a> | 
-					<a href="<@s.url value="/blog/view/%{blog.id}"/>">View: <@s.property value="blog.bit" /></a> | 
-					<a href="<@s.url value="/blog/view/%{blog.id}"/>">Comments: <@s.property value="blog.commentsNum" /></a>
-					<@s.if test="blog.copyright==true">
-					 | <@s.property value="blogConfigs.ORIGINALNOTE" escape="false"/>
-					</@s.if>
+					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}"/>">Category: ${blog.category.category}</a> | 
+					<a href="${rc.getContextPath()}/blog/view/${blog.id}"/>">View: ${blog.bit}</a> | 
+					<a href="${rc.getContextPath()}/blog/view/${blog.id}"/>">Comments: ${blog.commentsNum}</a>
+					<#if originalNote??>
+					 | ${originalNote}
+					</#if>
 				</h3>
 			</div>
 				<br>

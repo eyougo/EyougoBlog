@@ -5,6 +5,14 @@ import java.util.Map;
 
 import com.eyougo.blog.base.cache.exception.CacheException;
 
+/**
+ * 单例模式
+ * 储存所有继承了ObjectCache类的Cache对象
+ * 任何继承ObjectCache类的Cache对象在初始化时即可加入到该类的单例对象中
+ * 之后可通过该类单例对象访问
+ * @author mei
+ *
+ */
 public class CacheList {
 	
 	private static CacheList instance = null;
@@ -29,7 +37,6 @@ public class CacheList {
     }
 	
 	public CacheList addCache(ObjectCache objectCache) throws CacheException{
-		objectCache.loadData();
 		instance.caches.put(objectCache.getCacheName(), objectCache);
 		return instance;
     }

@@ -13,9 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.eyougo.blog.base.cache.CacheList;
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogBiz;
+import com.eyougo.blog.biz.BlogConfigBiz;
 import com.eyougo.blog.biz.CategoryBiz;
+import com.eyougo.blog.comm.ConfigCache;
 import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.comm.Pager;
 import com.eyougo.blog.entity.Blog;
@@ -28,6 +31,8 @@ public class BlogController {
 	private BlogBiz blogBiz;
 	
 	private CategoryBiz categoryBiz;
+	
+	private BlogConfigBiz blogConfigBiz;
 	
 	@RequestMapping(value="/list/{categoryId}-{page}")
 	public String list(@PathVariable Integer categoryId, @PathVariable Integer page, Model model){
@@ -64,6 +69,10 @@ public class BlogController {
 			model.addAttribute("previousBlog", previousBlog);
 			Blog nextBlog = this.blogBiz.getBlogAfterThisBlog(blog);
 			model.addAttribute("nextBlog", nextBlog);
+			if (blog.getCopyright()) {
+				String originalNote = this.blogConfigBiz.getOriginalNote();
+				model.addAttribute("originalNote", originalNote);
+			}
 		}else{
 			return "redirect:/blog/list/0-1";
 		}

@@ -100,7 +100,8 @@
 	<context:annotation-config/>
 	
 	<!-- Blog配置信息 -->
-	<!-- <bean id="blogConfigs" class="com.eyougo.blog.comm.BlogConfigs"> <constructor-arg> <ref bean="blogConfigBiz" /> </constructor-arg> </bean> -->
+	<bean id="configCache" class="com.eyougo.blog.comm.ConfigCache"></bean>
+	 
 	<!-- Dao层配置 -->
 	<bean id="blogConfigDao" class="com.eyougo.blog.dao.hbimpl.BlogConfigDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
