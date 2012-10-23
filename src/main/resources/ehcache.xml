@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:noNamespaceSchemaLocation="../../main/config/ehcache.xsd">  
+  
+    <diskStore path="java.io.tmpdir" />
+    <!--  
+        maxElementsInMemory="10"内存中的最大页面对象   
+        eternal="false"  
+        timeToIdleSeconds="120" timeToIdleSeconds ，多长时间不访问该缓存，那么ehcache就会清除该缓存。   
+        timeToLiveSeconds="240" timeToLiveSeconds，缓存的存活时间，从开始创建的时间算起。  
+        overflowToDisk="true" 是否写入硬盘  
+    -->  
+    <!-- Page and Page Fragment Caches -->  
+  
+    <cache name="fragmentCache"   
+        maxElementsInMemory="100"
+        timeToIdleSeconds="1800"
+        timeToLiveSeconds="3600"
+        overflowToDisk="true">  
+    </cache>  
+</ehcache>  
