@@ -13,6 +13,10 @@ public class Pager {
 
 	int perPageNum = 6; // 每页显示记录数
 
+	private int navigatePageNum=6; //导航页码数
+	
+    private int[] naviPages;  //所有导航页号
+	
 	public Pager() {
 	}
 
@@ -54,18 +58,52 @@ public class Pager {
         return (page - 1) * perPageNum;
     }
 	
-    public boolean hasPrePage() {
-        return page == 1 ? false : true;
+    public Integer getPrePage() {
+        return page == 1 ? null : page - 1;
     }
     
-    public boolean hasNextPage() {
-    	int allPage = 0;
-		if (totalNum != 0 && totalNum % perPageNum == 0) {
-			allPage = (int)(totalNum / perPageNum);
-		} else {
-			allPage = (int)(totalNum / perPageNum) + 1;
-		}
-        return page == allPage || allPage == 0 ? false : true;
+    public Integer getNextPage() {
+    	int allPage = getAllPage();
+        return page == allPage || allPage == 0 ? null : page+1;
     }
+
+	public int[] getNaviPages() {
+		int allPage = getAllPage();
+		//当总页数小于或等于导航页码数时
+        if(allPage<=navigatePageNum){
+        	naviPages=new int[allPage];
+            for(int i=0;i<allPage;i++){
+            	naviPages[i]=i+1;
+            }
+        }else{ //当总页数大于导航页码数时
+        	naviPages=new int[navigatePageNum];
+            int startNum=page-navigatePageNum/2;
+            int endNum=page+navigatePageNum/2;
+            
+            if(startNum<1){
+                startNum=1;
+                //最前navPageCount页
+                for(int i=0;i<navigatePageNum;i++){
+                	naviPages[i]=startNum++;
+                }
+            }else if(endNum>allPage){
+                endNum=allPage;
+                //最后navPageCount页
+                for(int i=navigatePageNum-1;i>=0;i--){
+                	naviPages[i]=endNum--;
+                }
+            }else{
+                //所有中间页
+                for(int i=0;i<navigatePageNum;i++){
+                	naviPages[i]=startNum++;
+                }
+            }
+        }
+		return naviPages;
+	}
+
+	public void setNavigatePageNum(int navigatePageNum) {
+		this.navigatePageNum = navigatePageNum;
+	}
 
 }

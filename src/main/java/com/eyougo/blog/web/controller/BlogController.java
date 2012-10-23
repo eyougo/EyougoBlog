@@ -46,10 +46,12 @@ public class BlogController {
 			blog.setCategory(category);
 		}else{
 			category.setCategory("BLOG");
+			category.setId(0);
 		}
 		List<Blog> blogList = blogBiz.getBlogsLikeBlog(blog, pager);
 		model.addAttribute("blogList", blogList);
 		model.addAttribute("category", category);
+		model.addAttribute("pager", pager);
 		return "/blog_list.ftl";
 	}
 	
@@ -80,15 +82,18 @@ public class BlogController {
 	}
 
 	@Autowired
-	@Required
 	public void setBlogBiz(BlogBiz blogBiz) {
 		this.blogBiz = blogBiz;
 	}
 
 	@Autowired
-	@Required
 	public void setCategoryBiz(CategoryBiz categoryBiz) {
 		this.categoryBiz = categoryBiz;
+	}
+
+	@Autowired
+	public void setBlogConfigBiz(BlogConfigBiz blogConfigBiz) {
+		this.blogConfigBiz = blogConfigBiz;
 	}
 	
 }

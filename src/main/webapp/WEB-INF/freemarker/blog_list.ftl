@@ -22,6 +22,18 @@
 		</#list>
 		<br>
 		<center>
+			<#if pager.prePage??><a href="${rc.getContextPath()}/blog/list/${category.id}-${pager.page-1}">Previous</a></#if>
+			&nbsp;&nbsp;
+			<#list pager.naviPages as naviPage>
+				<a href="${rc.getContextPath()}/blog/list/${category.id}-${naviPage}">
+					<#if naviPage==pager.page><b></#if>
+					${naviPage}
+					<#if naviPage==pager.page></b></#if>
+				</a>
+				&nbsp;
+			</#list>
+			&nbsp;
+			<#if pager.nextPage??><a href="${rc.getContextPath()}/blog/list/${category.id}-${pager.page+1}">Next</a></#if>
 		</center>
 		</div>  
 </body>

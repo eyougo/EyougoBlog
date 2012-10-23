@@ -31,7 +31,7 @@
 		<property name="password" value="${datasource.password}" />
 		<property name="idleConnectionTestPeriod" value="${bonecp.idleConnectionTestPeriod}" />
 		<property name="idleMaxAge" value="${bonecp.idleMaxAge}" />
-		<property name="maxConnectionsPerPartition" value="${bonecp.idleMaxAge}" />
+		<property name="maxConnectionsPerPartition" value="${bonecp.maxConnectionsPerPartition}" />
 		<property name="minConnectionsPerPartition" value="${bonecp.minConnectionsPerPartition}" />
 		<property name="partitionCount" value="${bonecp.partitionCount}" />
 		<property name="acquireIncrement" value="${bonecp.acquireIncrement}" />
@@ -98,9 +98,6 @@
 	</aop:config>
 
 	<context:annotation-config/>
-	
-	<!-- Blog配置信息 -->
-	<bean id="configCache" class="com.eyougo.blog.comm.ConfigCache"></bean>
 	 
 	<!-- Dao层配置 -->
 	<bean id="blogConfigDao" class="com.eyougo.blog.dao.hbimpl.BlogConfigDaoImpl">
@@ -122,7 +119,18 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	
+	<!-- Blog配置信息 -->
+	<bean id="configCache" class="com.eyougo.blog.comm.ConfigCache">
+	    <constructor-arg>
+			<ref bean="blogConfigBiz"/>
+		</constructor-arg>
+	</bean>
+	
 	<!-- Biz层配置 -->
+	<bean id="blogConfigBiz" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl">
+	    <property name="blogConfigDao" ref="blogConfigDao" />
+	</bean>
 
 	<bean id="blogBiz" class="com.eyougo.blog.biz.impl.BlogBizImpl">
 		<property name="blogDao" ref="blogDao" />
@@ -141,10 +149,6 @@
 	<bean id="categoryBiz" class="com.eyougo.blog.biz.impl.CategoryBizImpl"> 
 		<property name="categoryDao" ref="categoryDao" />
 		<property name="blogDao" ref="blogDao" />
-	</bean>
-	
-	<bean id="blogConfigBiz" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl">
-	    <property name="blogConfigDao" ref="blogConfigDao" />
 	</bean>
 	<!-- <bean id="blogConfigBizTarget" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl"> <property name="blogConfigDao" ref="blogConfigDao"></property> </bean> <bean 
 		id="blogConfigBiz" parent="txProxyTemplate"> <property name="target" ref="blogConfigBizTarget" /> </bean> <bean id="messageBizTarget" class="com.eyougo.blog.biz.MessageBiz"> 
