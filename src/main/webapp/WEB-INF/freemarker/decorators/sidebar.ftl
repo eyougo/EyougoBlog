@@ -32,7 +32,7 @@
 					<li><a href="${rc.getContextPath()}/blog/view/${blog.id}" title="${blog.title}" target="_blank">${blog.title}</a></li>
 					</#list>
 				</ul>
-				<div class="m1"><a href="/${rc.getContextPath()}blog/list/0-1">More</a></div>
+				<div class="m1"><a href="/${rc.getContextPath()}/blog/list/0-1">More</a></div>
 			</div>
 			<div id="Blogs">
 				<h1>Recent Comments</h1>

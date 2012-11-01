@@ -12,11 +12,11 @@
 			<div id="nr">
 				<h2><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank"><b>${blog.title}</b></a></h2>
 				<div class="sm"><p>${blog.summary}</p></div> 
-				<div class="m2"><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">Read More</a></div>
+				<div class="m2"><a href="${rc.getContextPath()}/blog/view/${blog.id}" class="bl" target="_blank">Read More</a></div>
 				<h3>
 					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}-1"/>Category: ${blog.category.category}</a> | 
 					<a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">View: ${blog.bit}</a> | 
-					<a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">Comments: ${blog.commentsNum}</a>
+					<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" target="_blank">Comments: ${blog.commentsNum}</a>
 				</h3>
 			</div><br/>
 		</#list>

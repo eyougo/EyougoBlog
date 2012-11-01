@@ -44,9 +44,9 @@ public class DecoratorController {
 		}
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("categoryNumMap", categoryNumMap);
-		List<Blog> recentBlogList = blogBiz.getRecentPublishedBlogs(5);
+		List<Blog> recentBlogList = blogBiz.getRecentPublishedBlogs(8);
 		model.addAttribute("recentBlogList", recentBlogList);
-		List<Comment> recentCommentList =  commentBiz.getRecentComments(5);
+		List<Comment> recentCommentList =  commentBiz.getRecentComments(8);
 		for (Iterator<Comment> iterator = recentCommentList.iterator(); iterator.hasNext();) {
 			Comment comment = iterator.next();
 			String content = comment.getContent();

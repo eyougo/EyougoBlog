@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>EyouGo Blog - <sitemesh:write property="title"/></title>
+	<script type="text/javascript" src="${rc.getContextPath()}/js/jquery-1.7.2.min.js"> </script>
 	<script type="text/javascript" src="${rc.getContextPath()}/js/buildup.js"> </script>
-	
 	<sitemesh:write property="head"/>
 </head>
 <body topmargin="0">

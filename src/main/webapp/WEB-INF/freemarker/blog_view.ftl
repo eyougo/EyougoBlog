@@ -22,11 +22,11 @@
 		SyntaxHighlighter.all();
 		$(
 			function() { 
-				var sBasePath = "${rc.getContextPath()}/fckeditor/"  //获得fckeditor的路径 		
-				var oFCKeditor = new FCKeditor( 'comment.content' ) ; 
+				var sBasePath = "${rc.getContextPath()}/fckeditor/"  //获得fckeditor的路径 	
+				var oFCKeditor = new FCKeditor( 'content' ) ; 
 				oFCKeditor.BasePath = sBasePath ; 
-				oFCKeditor.Width = "50%";
-				oFCKeditor.Height = "200px";
+				oFCKeditor.Width = "80%";
+				oFCKeditor.Height = "240px";
 				oFCKeditor.ToolbarSet = "Comment";
 				oFCKeditor.ReplaceTextarea(); 
 			} 
@@ -38,10 +38,10 @@
 				$('#nickname').focus();
 				return false;
 			}
-			if($.trim(getEditorHTMLContents("comment.content")) == ''){
+			if($.trim(getEditorHTMLContents("content")) == ''){
 				alert("请输入评论内容");
 				$('#content').focus();
-				setEditorContents("comment.content","")
+				setEditorContents("content","")
 				return false;
 			}
 			$('#comment').submit();
@@ -54,33 +54,37 @@
 				<h2>
 					<b><a href="${rc.getContextPath()}/blog/view/${blog.id}">${blog.title}</a></b>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${blog.date}
-				</h2>			
-				<p>
-					${blog.content}
-				</p>
-				
-				<br>&nbsp;&nbsp;&nbsp;&nbsp;
-				<#if previousBlog??>
-				Previous:&nbsp;<a href="${rc.getContextPath()}/blog/view/${previousBlog.id}">${previousBlog.title}</a>&nbsp;&nbsp;
-				</#if>
-				<#if NextBlog??>
-				Next:&nbsp;<a href="${rc.getContextPath()}/blog/view/${nextBlog.id}">${nextBlog.title}</a>&nbsp;&nbsp;
-				</#if>
-				<br>
-				<h3>
-					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}">Category: ${blog.category.category}</a> | 
-					<a href="${rc.getContextPath()}/blog/view/${blog.id}">View: ${blog.bit}</a> | 
-					<a href="${rc.getContextPath()}/blog/view/${blog.id}">Comments: ${blog.commentsNum}</a>
+				</h2>
+				<h3 class="bb">
+					View: ${blog.bit}| 
+					<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" class="bl">Comments: ${blog.commentsNum}</a> |
+					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}" class="bl">Category: ${blog.category.category}</a>
 					<#if originalNote??>
 					 | ${originalNote}
 					</#if>
+				</h3>		
+				<div class="sm">
+					<p>
+						${blog.content}
+					</p>
+				</div>
+				<h3>&nbsp;&nbsp;&nbsp;&nbsp;
+				<#if previousBlog??>
+				PREVIOUS:&nbsp;<a href="${rc.getContextPath()}/blog/view/${previousBlog.id}" class="bl">${previousBlog.title}</a>&nbsp;&nbsp;
+				</#if>
+				<br/>&nbsp;&nbsp;&nbsp;&nbsp;
+				<#if nextBlog??>
+				NEXT:&nbsp;<a href="${rc.getContextPath()}/blog/view/${nextBlog.id}" class="bl">${nextBlog.title}</a>&nbsp;&nbsp;
+				</#if>
 				</h3>
+				<br>
 			</div>
 			<br>
+			<a name="comments" id="comments"></a>
 			<#list blog.comments as comment>
 				<div id="nr">
 					<h2>
-						<a name="${comment.id}" id="${comment.id}></a>
+						<a name="${comment.id}" id="${comment.id}"></a>
 						${comment.contact.nickname}&nbsp;&nbsp;&nbsp;&nbsp;${comment.commentDate}
 						<#if Session["admin"]?exists>
 							<a href="${rc.getContextPath()}/admin/comment/delete?commentId=${comment.id}">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,27 +100,35 @@
 				<form method="post" action="${rc.getContextPath()}/blog/addComment" id="comment"> 
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr> 
-						 	<td>
-						 	<strong>Your name:      <label>
-						 	<input type="text" name="nickname" id="nickname"  class="pd" size="12" value=""/>
-						 	</label></strong>
+						 	<td >
 						 	<input type="hidden" name="blogId" id="blogId" value="${blog.id}"/>
+						 	<strong>Your name:      
+						 		<label>
+						 			<input type="text" name="nickname" id="nickname"  class="pd" size="12" value=""/>
+						 		</label>
+						 	</strong>
+						 	<br/>
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
-						 	<strong>Your Email:      <label>
-						 	<input type="text" name="email" id="email"  class="pd" size="22" value=""/>
-						 	</label></strong>
+						 	<strong>Your Email:      
+						 		<label>
+						 		<input type="text" name="email" id="email"  class="pd" size="22" value=""/>
+						 		</label>
+						 	</strong>
+						 	<br/>
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
 						 	<strong>ValidateCode:     <label>
 							</label></strong>
+							<br/>
+							</td>
 						<tr>
      						<td width="100%">
-     							<textarea rows="6" cols="40" name="content" id="content"></textarea>
+     							<textarea rows="8" cols="64" name="content" id="content"></textarea>
      						</td>
      					</tr>
      					<tr>
