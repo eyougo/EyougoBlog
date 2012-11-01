@@ -1,7 +1,7 @@
 package com.eyougo.blog.comm;
 
 public class EyougoConstant {
-	public static final String VERSION="v0.9alpha";
+	public static final String VERSION="v0.9beta";
 	
 	public static final String USER_SESSION_KEY = "user_session";
 	

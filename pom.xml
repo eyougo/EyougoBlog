@@ -4,9 +4,9 @@
 	<groupId>com.eyougo</groupId>
 	<artifactId>blog</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>blog Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<version>0.9.2beta</version>
+	<name>Eyougo Blog Maven Webapp</name>
+	<url>http://www.eyougo.com</url>
 	<properties>
 		<springframework.version>3.1.2.RELEASE</springframework.version>
 		<junit.version>4.10</junit.version>

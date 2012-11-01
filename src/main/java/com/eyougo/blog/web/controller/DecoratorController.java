@@ -13,17 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eyougo.blog.biz.BlogBiz;
+import com.eyougo.blog.biz.BlogConfigBiz;
 import com.eyougo.blog.biz.CategoryBiz;
 import com.eyougo.blog.biz.CommentBiz;
 import com.eyougo.blog.biz.MessageBiz;
 import com.eyougo.blog.entity.Blog;
+import com.eyougo.blog.entity.BlogConfig;
 import com.eyougo.blog.entity.Category;
 import com.eyougo.blog.entity.Comment;
 import com.eyougo.blog.entity.Message;
 
 @Controller
 public class DecoratorController {
-	
 
 	private BlogBiz blogBiz;
 
@@ -32,6 +33,8 @@ public class DecoratorController {
 	private MessageBiz messageBiz;
 	
 	private CategoryBiz categoryBiz;
+	
+	private BlogConfigBiz blogConfigBiz;
 	
 	@RequestMapping(value="/sidebar")
 	public String sidebar(Model model){
@@ -72,6 +75,10 @@ public class DecoratorController {
 	public String main(Model model){
 		List<Category> categoryList = categoryBiz.getAllCategorys();
 		model.addAttribute("categoryList", categoryList);
+		String blogTitle = blogConfigBiz.getBlogTitle();
+		model.addAttribute("blogTitle", blogTitle);
+		String blogCopyright = blogConfigBiz.getBlogCopyright();
+		model.addAttribute("blogCopyright", blogCopyright);
 		return "/decorators/main.ftl";
 	}
 
@@ -94,6 +101,11 @@ public class DecoratorController {
 	@Required
 	public void setCategoryBiz(CategoryBiz categoryBiz) {
 		this.categoryBiz = categoryBiz;
+	}
+	@Autowired
+	@Required
+	public void setBlogConfigBiz(BlogConfigBiz blogConfigBiz) {
+		this.blogConfigBiz = blogConfigBiz;
 	}
 	
 	

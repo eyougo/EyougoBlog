@@ -57,13 +57,23 @@ public class BlogConfigBizImpl implements BlogConfigBiz{
 		return this.findBlogConfigValueById("ADMINPASSWORD");
 	}
 	@Override
-	public String getCopyRight(){
+	public String getBlogCopyright(){
 		return this.findBlogConfigValueById(EyougoConstant.BLOG_COPYRIGHT);
 	}
 	
 	@Override
 	public String getOriginalNote(){
 		return this.findBlogConfigValueById(EyougoConstant.ORIGINAL_NOTE);
+	}
+	
+	@Override
+	public String getBlogName(){
+		return this.findBlogConfigValueById(EyougoConstant.BLOG_NAME);
+	}
+	
+	@Override
+	public String getBlogTitle(){
+		return this.findBlogConfigValueById(EyougoConstant.BLOG_TITLE);
 	}
 	
 	@Required

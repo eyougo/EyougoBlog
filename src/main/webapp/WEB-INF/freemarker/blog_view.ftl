@@ -4,7 +4,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${blog.title}</title>
-<link href="${rc.getContextPath()}/css/index.blog.css" rel="stylesheet" type="text/css" />
 <link href="${rc.getContextPath()}/js/syntaxhighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
 <link href="${rc.getContextPath()}/js/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${rc.getContextPath()}/fckeditor/fckeditor.js"> </script>

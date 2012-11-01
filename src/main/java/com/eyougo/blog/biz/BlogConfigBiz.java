@@ -19,7 +19,11 @@ public interface BlogConfigBiz {
 	
 	String getAdminPassword();
 	
-	String getCopyRight();
+	String getBlogCopyright();
+	
+	String getBlogName();
+	
+	String getBlogTitle();
 	
 	String getOriginalNote();
 }
