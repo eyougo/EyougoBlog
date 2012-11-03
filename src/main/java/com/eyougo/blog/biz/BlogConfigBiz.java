@@ -16,6 +16,17 @@ public interface BlogConfigBiz {
 	String findBlogConfigValueById(String id);
 	
 	void saveBlogConfigs(List<BlogConfig> blogConfigList) throws InternalException;
+
+	
+	/**
+	 * 将设置信息存入configList中
+	 * @param id
+	 * @param configValue
+	 * @param configList
+	 * @return BlogConfigBiz
+	 * @throws EyougoBlogException
+	 */
+	BlogConfigBiz setBlogConfigValue(String id,String configValue,List<BlogConfig> configList);
 	
 	String getAdminPassword();
 	

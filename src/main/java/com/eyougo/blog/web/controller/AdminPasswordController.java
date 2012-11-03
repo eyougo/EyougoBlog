@@ -3,6 +3,7 @@ package com.eyougo.blog.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.entity.BlogConfig;
+import com.eyougo.blog.util.EyougoStringUtil;
 
 @Controller
-@RequestMapping(value="/admin/config")
-public class AdminConfigController {
-	private static final Log LOG = LogFactory.getLog(AdminConfigController.class); 
+@RequestMapping(value="/admin/password")
+public class AdminPasswordController {
+	private static final Log LOG = LogFactory.getLog(AdminPasswordController.class); 
 	private BlogConfigBiz blogConfigBiz;
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(Model model){
@@ -29,24 +30,24 @@ public class AdminConfigController {
 		for (BlogConfig blogConfig : blogConfigs) {
 			model.addAttribute(blogConfig.getId(), blogConfig.getConfigValue());
 		}
-		return "/admin/admin_config.ftl";
+		return "/admin/admin_password.ftl";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String post(@RequestParam String blogName, @RequestParam String blogTitle, 
-			@RequestParam String blogCopyright, @RequestParam String originalNote){
-		List<BlogConfig> configList = new ArrayList<BlogConfig>();
-		this.blogConfigBiz
-			.setBlogConfigValue(EyougoConstant.BLOG_NAME, blogName, configList)
-			.setBlogConfigValue(EyougoConstant.BLOG_TITLE, blogTitle, configList)
-			.setBlogConfigValue(EyougoConstant.BLOG_COPYRIGHT, blogCopyright, configList)
-			.setBlogConfigValue(EyougoConstant.ORIGINAL_NOTE, originalNote, configList);
-		try {
-			this.blogConfigBiz.saveBlogConfigs(configList);
-		} catch (InternalException e) {
-			LOG.error("save blog configs error", e);
+	public String post(@RequestParam String formerPassword, @RequestParam String password){
+		String vAdminPassword = blogConfigBiz.getAdminPassword();
+		if(StringUtils.isNotEmpty(formerPassword) && 
+				EyougoStringUtil.hash(formerPassword).equals(vAdminPassword)){
+			List<BlogConfig> configList = new ArrayList<BlogConfig>();
+			this.blogConfigBiz
+				.setBlogConfigValue("ADMINPASSWORD", EyougoStringUtil.hash(password), configList);
+			try {
+				this.blogConfigBiz.saveBlogConfigs(configList);
+			} catch (InternalException e) {
+				LOG.error("save blog configs error", e);
+			}
 		}
-		return "redirect:/admin/config";
+		return "redirect:/admin/password";
 	}
 	
 	@Autowired
