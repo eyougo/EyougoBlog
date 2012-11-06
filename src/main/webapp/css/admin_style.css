@@ -1,28 +1,28 @@
 BODY
 {
-	FONT-SIZE: 12px;
+	FONT-SIZE: 14px;
 	text-decoration: none;
 	line-height: 150%;
 	background-color: #D6DFF7;	
     text-decoration: none;
-    SCROLLBAR-FACE-COLOR: #799ae1;  MARGIN: 0px; FONT: 12px; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1;
+    SCROLLBAR-FACE-COLOR: #799ae1;  MARGIN: 0px; FONT: 14px; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1;
 }
 TD
 {
-	FONT-SIZE: 9pt;
+	FONT-SIZE: 11pt;
 }
 Input
 {
-	FONT-SIZE: 9pt;
+	FONT-SIZE: 11pt;
 }
 Button
 {
-	FONT-SIZE: 9pt;
+	FONT-SIZE: 11pt;
 	HEIGHT: 20px; 
 }
 Select
 {
-	FONT-SIZE: 9pt;
+	FONT-SIZE: 11pt;
 	HEIGHT: 20px;
 }
 A
@@ -48,13 +48,14 @@ A:hover
 }
 .tdbg{
 	background:#E4EDF9;
+	height: 24px;
 }
 .topbg
 {
 	background:url(../images/admin/topbg.gif);
 	color: #FFFFFF;
-	font-size:12px;
-	height:20px;
+	font-size:14px;
+	height:24px;
 }
 .ul {
 	width:100%;

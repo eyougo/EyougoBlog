@@ -5,19 +5,19 @@
 <title>管理导航</title>
 <STYLE type=text/css>
 BODY {
-	SCROLLBAR-FACE-COLOR: #799ae1; BACKGROUND: #799ae1; MARGIN: 0px; FONT: 12px 宋体; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1
+	SCROLLBAR-FACE-COLOR: #799ae1; BACKGROUND: #799ae1; MARGIN: 0px; FONT: 14px 宋体; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1
 }
 TABLE {
 	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
 }
 TD {
-	FONT: 12px 宋体
+	FONT: 14px 宋体
 }
 IMG {
 	BORDER-RIGHT: 0px; BORDER-TOP: 0px; VERTICAL-ALIGN: bottom; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
 }
 A {
-	FONT: 12px 宋体; COLOR: #000000; TEXT-DECORATION: none
+	FONT: 14px 宋体; COLOR: #000000; TEXT-DECORATION: none
 }
 A:hover {
 	COLOR: #428eff; TEXT-DECORATION: underline
@@ -75,7 +75,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
 <div class=sec_menu style="width:158">
 <table cellpadding=0 cellspacing=0 align=center width=130>
 <tr>
-                <td height=20>站点名：${blogName}</td>
+                <td height=24>站点名：${blogName}</td>
               </tr>
 </table>
 </div>
@@ -97,11 +97,11 @@ eval("submenu" + sid + ".style.display=\"none\";");
 <div class=sec_menu style="width:158">
             <table width=130 align=center cellpadding=0 cellspacing=0 >
               <tr>
-                <td height=20 width=15><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24 width=15><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/config" target="main">博客站点设置</a></td>
               </tr>
 			  <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/password" target="main">后台密码设置</a></td>
               </tr>
 			</table>
@@ -124,19 +124,19 @@ eval("submenu" + sid + ".style.display=\"none\";");
 	<div class=sec_menu style="width:158" >
             <table width=130 align=center cellpadding=0 cellspacing=0>
               <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/blog/add" target="main">添加博客日志</a></td>
               </tr>
               <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/blog/list" target="main">管理博客日志</a></td>
               </tr>
               <tr>
-                <td width="15" height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td width="15" height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/category/add" target="main">添加日志分类</a></td>
               </tr>
               <tr>
-                <td width="15" height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td width="15" height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/category/list" target="main">管理日志分类</a></td>
               </tr>
 			</table>
@@ -160,11 +160,11 @@ eval("submenu" + sid + ".style.display=\"none\";");
 <div class=sec_menu style="width:158">
             <table width=130 align=center cellpadding=0 cellspacing=0 >
               <tr>
-                <td width="15" height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td width="15" height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/link/add" target="main">添加友情连接</a></td>
               </tr>
               <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="${rc.getContextPath()}/admin/link/list" target="main">友情连接管理</a></td>
               </tr>	   
 			  </table>
@@ -187,11 +187,11 @@ eval("submenu" + sid + ".style.display=\"none\";");
 <div class=sec_menu style="width:158">
             <table width=130 align=center cellpadding=0 cellspacing=0 >
               <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="admin_Cmt.asp?action=show" target="main">日志评论管理</a></td>
               </tr>
               <tr>
-                <td height=20><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
+                <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
                 <td><a href="Admin_Msg.asp?action=show" target="main">博客留言管理</a></td>
               </tr>
 			  </table>
@@ -215,7 +215,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
 <div class=sec_menu style="width:158">
 <table cellpadding=0 cellspacing=0 align=center width=130>
 <tr>
-  <td height=20><br>
+  <td height=24><br>
     <b>CopyRight：</b><br>${blogName}
       <br>
                   <b>Power：</b><br><a href="http://www.eyougo.com" target="_blank">EyouGo Blog ${version}</a><br>
