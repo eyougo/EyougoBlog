@@ -10,6 +10,12 @@
             $("#page").val(page);
             $("#search").submit();
         }
+        
+        function delete(blogId){
+            $("#blogId").val(blogId);
+            $("#manage").attr("action", "${rc.getContextPath()}/admin/blog/delete"); 
+            $("#manage").submit();
+        }
 </script>
 </head>
 <body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" class="bgcolor" >
@@ -70,17 +76,17 @@
 		}
 	}
   </script>
-  <FORM METHOD=POST ACTION="${rc.getContextPath()}/admin/blog/manage" name="blogs" id="blogs" onSubmit="return check()">
+  <FORM METHOD=POST ACTION="${rc.getContextPath()}/admin/blog/manage" name="manage" id="manage" onSubmit="return check()">
   <table width="98%" border="0" align=center cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" class="border">
   <tr>
     <td class="topbg" colspan="7"><div align="center">总共搜索到${pager.totalNum}条符合要求的记录</div></td>
   </tr>
   <tr>
     <td class="tdbg" width="6%">选中</td>
-    <td class="tdbg" width="17%"><div align="center">分类</div></td>
-    <td class="tdbg" width="31%"><div align="center">标题</div></td>
-    <td class="tdbg" width="7%">点/评</td>
-    <td class="tdbg" width="16%"><div align="center">时间</div></td>
+    <td class="tdbg" width="10%"><div align="center">分类</div></td>
+    <td class="tdbg" width="50%"><div align="center">标题</div></td>
+    <td class="tdbg" width="9%">点/评</td>
+    <td class="tdbg" width="15%"><div align="center">时间</div></td>
     <td class="tdbg" colspan="2"><div align="center">操作</div></td>
   </tr>
   <#list blogList as blog>
@@ -93,8 +99,8 @@
     <td class="tdbg"><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">${blog.title}</a></td>
     <td class="tdbg">${blog.bit}/${blog.commentsNum}</td>
     <td class="tdbg">${blog.date}</td>
-    <td class="tdbg" width="11%"><div align="center"><a href="${rc.getContextPath()}/admin/blog/edit?id=${blog.id}">修改</a></div></td>
-    <td class="tdbg" width="12%"><div align="center"><a href="${rc.getContextPath()}/admin/blog/delete?id=${blog.id}" onClick="return confirm('是否删除?\n与这篇日志相关的评论也将被删除.')">删除</a></div></td>
+    <td class="tdbg" width="5%"><div align="center"><a href="${rc.getContextPath()}/admin/blog/edit?id=${blog.id}">修改</a></div></td>
+    <td class="tdbg" width="5%"><div align="center"><a href="javascript:delete(${blog.id});">删除</a></div></td>
   </tr>
   </#list>
   
@@ -110,12 +116,17 @@
     &nbsp;&nbsp;发布<INPUT TYPE="radio" NAME="operation" value="publish">
 	</td>
     <td class="tdbg"><INPUT TYPE="submit" value="操作">
+    <input type="hidden" name="blogId" id="blogId" value=""/>
+    <input type="hidden" name="page" value="${pager.page}"/>
+    <input type="hidden" name="categoryId" value="${categoryId}"/>
+    <input type="hidden" name="stype" value="${stype}"/>
+    <input type="hidden" name="keywords" value="${keywords}"/>
     </td>
     <td class="tdbg">&nbsp;</td>
     <td class="tdbg" colspan="2">&nbsp;</td>
   </tr>
   <tr>
-  	<td colspan="7" background="../images/admin/topbg.gif">
+  	<td colspan="7" background="${rc.getContextPath()}/images/admin/topbg.gif">
 	    <div align="center" class="tile_white">
 	    <font color="white">
 	    	<#if pager.prePage??><a href="javascript:pageChange(${pager.page-1});">Previous</a></#if>
