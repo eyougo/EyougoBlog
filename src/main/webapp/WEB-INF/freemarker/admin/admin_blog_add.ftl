@@ -1,33 +1,28 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="<s:url value="/css/admin_style.css"/>">
+		<link rel="stylesheet" href="${rc.contextPath}/css/admin_style.css">
 		<title>日志管理</title>
 		
 		<!-- js calendar -->
-		<link rel="stylesheet" type="text/css" media="all" href="<s:url value="/js/jscalendar/calendar-blue.css"/>"/>
-		<script type="text/javascript" src="<s:url value="/js/jscalendar/calendar.js"/>"></script>
-		<script type="text/javascript" src="<s:url value="/js/jscalendar/lang/cn_utf8.js"/>"></script>
-		<script type="text/javascript" src="<s:url value="/js/jscalendar/calendar-setup.js"/>"></script>
+		<link rel="stylesheet" type="text/css" media="all" href="${rc.contextPath}/js/jscalendar/calendar-blue.css"/>
+		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/calendar.js"/>"></script>
+		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/lang/cn_utf8.js"/>"></script>
+		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/calendar-setup.js"/>"></script>
 		<!-- js calendar -->
 		<!-- FCKEditor -->
-		<script type="text/javascript" src="<s:url value="/fckeditor/fckeditor.js"/>"> </script> 
+		<script type="text/javascript" src="${rc.contextPath}/fckeditor/fckeditor.js"/>"> </script> 
 		<script type="text/javascript"> 
 		window.onload = function() { 
-			var sBasePath = "<s:url value="/fckeditor/"/>"  //获得fckeditor的路径 		
-			var oFCKeditor = new FCKeditor( 'blog.content' ) ; 
+			var sBasePath = "${rc.contextPath}/fckeditor/";  //获得fckeditor的路径 		
+			var oFCKeditor = new FCKeditor( 'content' ) ; 
 			oFCKeditor.BasePath = sBasePath ; 
 			oFCKeditor.Width = "95%";
 			oFCKeditor.Height = "400px";
 			oFCKeditor.ToolbarSet = "BlogContent";
 			oFCKeditor.ReplaceTextarea() ; 
-			var obFCKeditor = new FCKeditor( 'blog.summary' ) ; 
+			var obFCKeditor = new FCKeditor( 'summary' ) ; 
 			obFCKeditor.Width = "70%";
 			obFCKeditor.Height = "200px";
 			obFCKeditor.ToolbarSet = "BlogSummary";
@@ -36,7 +31,7 @@
 		} 
 		</script> 
 		<!-- end of FCKEditor --> 
-		<script type="text/javascript" src="<s:url value="/js/buildup.js"/>"></script>
+		<script type="text/javascript" src="${rc.contextPath}/js/buildup.js"></script>
 		<script language="javascript">
 //灾难恢复 把日志暂时存储在粘贴板上
 function copyclip(meintext)
@@ -129,7 +124,7 @@ function insertSign(textareaId,summarySign){
 	<body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0"
 		class="bgcolor">
 
-		<form action="adminBlog_addexe.action" method="post" name="blogform"
+		<form action="${rc.contextPath}/admin/blog/add" method="post" name="blogform"
 			onsubmit="javascript:return checkpostdata();">
 			<table width="98%" border="0" align=center cellpadding="2"
 				cellspacing="1" bgcolor="#FFFFFF" class="border">
@@ -145,7 +140,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="4">
-						<s:textfield name="blog.title" id="title" cssStyle="width:300;"/>
+						<input type="text" name="title" id="title" cssStyle="width:300;"/>
 						最多不应超过50字
 					</td>
 				</tr>
@@ -157,10 +152,11 @@ function insertSign(textareaId,summarySign){
 					</td>
 					<td class="tdbg" colspan="4">
 						<label>
-							<s:select name="blog.category.id" id="category" headerKey="0"
-								headerValue="选择分类" list="categorys" listKey="id"
-								listValue="category">
-							</s:select>
+							<select name="category.id" id="category">
+								<#list categories as category>
+      							<option value="${category.id}">${category.category}</option>
+      							</#list>
+							<select>
 						</label>
 						<input type="button" name="insertsummary" value="插入摘要标记"
 							style="border: solid 1px" onclick="javascript:insertSign('content','$eyougo_cut$');" />
@@ -168,7 +164,7 @@ function insertSign(textareaId,summarySign){
 						<input type="button" name="havesummary" value="隐藏摘要框"
 							style="border: solid 1px"
 							onclick="if(this.value=='显示摘要框'){this.value='隐藏摘要框';abstract.style.display='';}else{this.value='显示摘要框';abstract.style.display='none';}" />
-						<s:checkbox name="isAutoSummary" fieldValue="true"
+						<input type="checkbox" name="isAutoSummary" value="true"
 							id="isAutoSummary" />
 						是否自动生成摘要
 					</td>
@@ -180,7 +176,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="4">
-						<textarea rows="6" cols="40" name="blog.summary" id="summary"></textarea>
+						<textarea rows="6" cols="40" name="summary" id="summary"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -190,7 +186,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="8">
-						<s:textarea rows="6" cols="60" name="blog.content" id="content"></s:textarea>
+						<textarea rows="6" cols="60" name="content" id="content"></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -201,22 +197,27 @@ function insertSign(textareaId,summarySign){
 					</td>
 					<td class="tdbg" width="30%">
 						置顶（值越大越靠前）
-						<s:select name="blog.top" list="#{0:'不置顶',1:'置顶一',2:'置顶二',3:'置顶三'}">
-						</s:select>
+						<select name="top" id="top">
+							<option value="0">不置顶</option>
+							<option value="1">置顶一</option>
+							<option value="2">置顶二</option>
+							<option value="3">置顶三</option>
+						</select>
 					</td>
 					<td class="tdbg" width="20%">
 						允许回复
-						<s:select name="blog.cmtUser" id="cmtUser"
-							list="#{0:'游客',1:'用户',-1:'不可评论'}">
-						</s:select>
+						<select name="cmtUser" id="cmtUser">
+							<option value="0">允许</option>
+							<option value="-1">不允许</option>
+						<select>
 					</td>
 					<td class="tdbg" width="20%">
 						原创声明
-						<s:checkbox name="blog.copyright" id="copyright" fieldValue="true" />
+						<input type="checkbox" name="copyright" id="copyright" value="true"/>
 					</td>
 					<td class="tdbg" width="20%">
 						存为草稿
-						<s:checkbox name="blog.isDraft" id="isDraft" fieldValue="true" />
+						<input type="checkbox" name="isDraft" id="isDraft" value="true"/>
 					</td>
 				</tr>
 				<tr>
@@ -226,26 +227,26 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="8">
-						<input name="blog.emotion" type="radio" value="0">
+						<input name="emotion" type="radio" value="0">
 						无
-						<input name="blog.emotion" type="radio" value="1" checked>
-						<img src="../images/emotion/em01.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="2">
-						<img src="../images/emotion/em02.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="3">
-						<img src="../images/emotion/em03.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="4">
-						<img src="../images/emotion/em04.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="5">
-						<img src="../images/emotion/em05.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="6">
-						<img src="../images/emotion/em06.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="7">
-						<img src="../images/emotion/em07.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="8">
-						<img src="../images/emotion/em08.gif" width="19" height="19">
-						<input type="radio" name="blog.emotion" value="9">
-						<img src="../images/emotion/em09.gif" width="19" height="19">
+						<input name="emotion" type="radio" value="1" checked>
+						<img src="${rc.contextPath}/images/emotion/em01.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="2">
+						<img src="${rc.contextPath}/images/emotion/em02.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="3">
+						<img src="${rc.contextPath}/images/emotion/em03.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="4">
+						<img src="${rc.contextPath}/images/emotion/em04.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="5">
+						<img src="${rc.contextPath}/images/emotion/em05.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="6">
+						<img src="${rc.contextPath}/images/emotion/em06.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="7">
+						<img src="${rc.contextPath}/images/emotion/em07.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="8">
+						<img src="${rc.contextPath}/images/emotion/em08.gif" width="19" height="19">
+						<input type="radio" name="emotion" value="9">
+						<img src="${rc.contextPath}/images/emotion/em09.gif" width="19" height="19">
 					</td>
 				</tr>
 				<tr>
@@ -255,7 +256,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="8">
-							<s:textfield name="blog.date" id="date" cssStyle="width:200;"/>
+							<input type="text" name="date" id="date" cssStyle="width:200;"/>
 							<input type="button" id="trigger" value=">>>" />
 							<script type="text/javascript">
 									document.getElementById("date").value=new Date().format("yyyy-MM-dd hh:mm:ss");

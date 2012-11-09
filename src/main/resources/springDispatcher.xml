@@ -39,6 +39,12 @@
 		</property>
 		<property name="viewNames" value ="*.ftl" /> 
 		<property name="requestContextAttribute" value="rc" />
+		<!--exposeRequestAttributes会将springMicroHelper也进行传递
+			sitemesh传递request给装饰器时和装饰页面本身的springMicroHelper造成冲突
+			参见AbstractTemplateView的renderMergedOutputModel方法
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="allowRequestOverride" value="true" />
+		 -->
 	</bean>
 	<!-- 这里定义freemarker.properties文件的加载，和后面的对应。 -->
 	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

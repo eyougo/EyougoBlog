@@ -29,8 +29,8 @@
 		<property name="jdbcUrl" value="${datasource.url}" />
 		<property name="username" value="${datasource.username}" />
 		<property name="password" value="${datasource.password}" />
-		<property name="idleConnectionTestPeriod" value="${bonecp.idleConnectionTestPeriod}" />
-		<property name="idleMaxAge" value="${bonecp.idleMaxAge}" />
+		<property name="idleConnectionTestPeriodInMinutes" value="${bonecp.idleConnectionTestPeriodInMinutes}" />
+		<property name="idleMaxAgeInMinutes" value="${bonecp.idleMaxAgeInMinutes}" />
 		<property name="maxConnectionsPerPartition" value="${bonecp.maxConnectionsPerPartition}" />
 		<property name="minConnectionsPerPartition" value="${bonecp.minConnectionsPerPartition}" />
 		<property name="partitionCount" value="${bonecp.partitionCount}" />

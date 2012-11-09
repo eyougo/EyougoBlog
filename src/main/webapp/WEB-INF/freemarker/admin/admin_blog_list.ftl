@@ -3,7 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${rc.getContextPath()}/css/admin_style.css">
+<script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+<#-- 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
+-->
 <title>日志管理</title>
 <script type="text/javascript">
  		function pageChange(page){
@@ -11,7 +14,7 @@
             $("#search").submit();
         }
         
-        function delete(blogId){
+        function deleteBlog(blogId){
             $("#blogId").val(blogId);
             $("#manage").attr("action", "${rc.getContextPath()}/admin/blog/delete"); 
             $("#manage").submit();
@@ -100,7 +103,7 @@
     <td class="tdbg">${blog.bit}/${blog.commentsNum}</td>
     <td class="tdbg">${blog.date}</td>
     <td class="tdbg" width="5%"><div align="center"><a href="${rc.getContextPath()}/admin/blog/edit?id=${blog.id}">修改</a></div></td>
-    <td class="tdbg" width="5%"><div align="center"><a href="javascript:delete(${blog.id});">删除</a></div></td>
+    <td class="tdbg" width="5%"><div align="center"><a href="javascript:deleteBlog(${blog.id});">删除</a></div></td>
   </tr>
   </#list>
   
