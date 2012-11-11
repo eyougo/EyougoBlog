@@ -73,7 +73,7 @@ public class AdminBlogController {
 			@RequestParam(required=false, defaultValue="0") Integer categoryId,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
-			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes){
+			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
 		try {
 			if(operation!=null && blogIds !=null){
 				if(StringUtils.equals(operation, "delmore")){
@@ -87,6 +87,7 @@ public class AdminBlogController {
 		} catch (InternalException e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage(), e);
+			throw e;
 		}
 		redirectAttributes.addAttribute("categoryId", categoryId);
 		redirectAttributes.addAttribute("page", page);
@@ -100,7 +101,7 @@ public class AdminBlogController {
 			@RequestParam(required=false, defaultValue="0") Integer categoryId,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
-			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes){
+			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
 		try {
 			if (StringUtils.isNotEmpty(blogId)) {
 				this.blogBiz.deleteBlogById(NumberUtils.toInt(blogId));
@@ -108,6 +109,7 @@ public class AdminBlogController {
 		} catch (InternalException e) {
 			e.printStackTrace();
 			LOG.error(e.getMessage(), e);
+			throw e;
 		}
 		redirectAttributes.addAttribute("categoryId", categoryId);
 		redirectAttributes.addAttribute("page", page);
@@ -124,9 +126,17 @@ public class AdminBlogController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String postAdd(Blog blog, @RequestParam(required=false, defaultValue="false") Boolean isAutoSummary, Model model){
-		LOG.info(blog.getTitle());
-		//TODO add blog
+	public String postAdd(Blog blog, @RequestParam(required=false, defaultValue="false") Boolean isAutoSummary, Model model) throws InternalException{
+		try {
+			if (isAutoSummary == true) {
+				this.blogBiz.createBlogWithAutoSummary(blog);
+			}else {
+				this.blogBiz.createBlog(blog);
+			}
+		} catch (InternalException e) {
+			LOG.error(e.getMessage(), e);
+			throw e;
+		}
 		return "admin/admin_blog_addexe.ftl";
 	}
 	

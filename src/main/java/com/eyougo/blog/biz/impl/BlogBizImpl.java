@@ -26,6 +26,36 @@ public class BlogBizImpl implements BlogBiz {
 			throw new InternalException(e);
 		}
 	}
+	
+	@Override
+	public Blog createBlog(Blog blog) throws InternalException {
+		blog.setBit(0);
+		blog.setCommentsNum(0);
+		return this.saveBlog(blog);
+	}
+
+	@Override
+	public Blog createBlogWithAutoSummary(Blog blog) throws InternalException {
+		//自动生成摘要
+		String content = blog.getContent();
+		String summary= "";
+		int summaryEnd = content.indexOf(EyougoConstant.BLOG_SUMMARY_SIGN);//考虑是否有摘要标记
+		if(summaryEnd>-1){
+			summary = content.substring(0, summaryEnd);//生成摘要
+			content = content.substring(summaryEnd+EyougoConstant.BLOG_SUMMARY_SIGN.length(),content.length());//去掉摘要标记生成内容
+			blog.setContent(summary+content);
+		}else if(content.indexOf("</p>")>-1){//第一段分开
+			summary = content.substring(0,content.indexOf("</p>")+4);
+		}else if(content.indexOf("<br /><br />")>-1){//第一个双换行
+			summary = content.substring(0,content.indexOf("<br /><br />")+12);
+		}else if(content.indexOf("<br />")>-1){//第一个单换行
+			summary = content.substring(0,content.indexOf("<br />")+6);
+		}else{//都没有，则摘要与内容相同
+			summary = content;
+		}
+		blog.setSummary(summary);
+		return this.saveBlog(blog);
+	}
 
 	@Override
 	public Blog getBlogById(Integer blogId) {

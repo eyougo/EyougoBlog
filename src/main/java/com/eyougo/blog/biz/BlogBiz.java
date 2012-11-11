@@ -13,6 +13,8 @@ public interface BlogBiz {
 
 	Blog saveBlog(Blog blog) throws InternalException;
 
+	Blog createBlog(Blog blog) throws InternalException;
+	
 	Blog getBlogById(Integer blogId);
 
 	List<Blog> getRecentPublishedBlogs(int recentNum);
@@ -36,4 +38,6 @@ public interface BlogBiz {
 	Blog getBlogBeforeThisBlog(Blog blog);
 
 	Blog getBlogAfterThisBlog(Blog blog);
+	
+	Blog createBlogWithAutoSummary(Blog blog) throws InternalException;
 }
