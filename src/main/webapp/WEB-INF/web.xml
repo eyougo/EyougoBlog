@@ -18,6 +18,8 @@
 	<filter-mapping>
 		<filter-name>fragmentCacheFilter</filter-name>
 		<url-pattern>/main</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	<filter>
 		<filter-name>charsetFilter</filter-name>
