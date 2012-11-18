@@ -20,12 +20,13 @@ public class Blog {
 	private Integer bit;	//点击数
 	private Integer commentsNum;//评论数
 	private Integer top;//是否置顶，值越大越靠前
-	private Integer emotion;//表情	
-	private Boolean isDraft = false;//是否草稿
+	private Integer emotion;//表情
+	
+	private Boolean isDraft;//是否草稿
 	private Category category;	//分类
 	//下个版本实现日志标签
 	private Integer cmtUser;	//可发表评论的角色，0为游客，1为用户，-1为不能评论
-	private Boolean copyright = false;//是否包含版权声明
+	private Boolean copyright;//是否包含版权声明
 	private Set<Comment> comments;	//评论集合
 	
 	public Blog() {

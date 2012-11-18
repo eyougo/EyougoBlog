@@ -55,7 +55,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${blog.date}
 				</h2>
 				<h3 class="bb">
-					View: ${blog.bit}| 
+					View: ${blog.bit} | 
 					<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" class="bl">Comments: ${blog.commentsNum}</a> |
 					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}" class="bl">Category: ${blog.category.category}</a>
 					<#if originalNote??>

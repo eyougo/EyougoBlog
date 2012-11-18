@@ -94,7 +94,8 @@ function checkpostdata()
   document.getElementById("title").focus();
   return false;
   }
-  if(getEditorHTMLContents("blog.content")=="")
+  alert(getEditorTextContents("content"));
+  if(getEditorTextContents("content").trim()=="")
   {alert("内容不能为空");
   return false;
   }
@@ -102,21 +103,20 @@ function checkpostdata()
   {alert("你没有选择分类");
 	  document.getElementById("category").focus();
 	  return false;
-  }
-  if (getEditorHTMLContents("blog.summary")==""&&document.getElementById("isAutoSummary").checked==false)
+	}
+  if (getEditorTextContents("summary").trim()=="" && document.getElementById("isAutoSummary").checked==false)
   {
 	alert("请填写摘要或选择自动生成摘要");
 	return false;
   }
    copyclip(document.getElementById("content").value);
    return true;
-  
 }
 
 function insertSign(textareaId,summarySign){
-	var text = getEditorHTMLContents("blog.content");
+	var text = getEditorHTMLContents("content");
 	var ntext = text+summarySign;
-	setEditorContents("blog.content",ntext);
+	setEditorContents("content",ntext);
 }
 </script>
 <s:actionerror theme="eyougo"/>

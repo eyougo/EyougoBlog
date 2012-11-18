@@ -97,14 +97,14 @@ public class AdminBlogController {
 	}
 
 	@RequestMapping(value="/delete")
-	public String delete(@RequestParam(required=false) String blogId,
+	public String delete(@RequestParam(required=false) Integer blogId,
 			@RequestParam(required=false, defaultValue="0") Integer categoryId,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
 			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
 		try {
-			if (StringUtils.isNotEmpty(blogId)) {
-				this.blogBiz.deleteBlogById(NumberUtils.toInt(blogId));
+			if (blogId != null) {
+				this.blogBiz.deleteBlogById(blogId);
 			}
 		} catch (InternalException e) {
 			e.printStackTrace();
@@ -137,7 +137,21 @@ public class AdminBlogController {
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
-		return "admin/admin_blog_addexe.ftl";
+		return "redirect:/admin/blog/addok";
+	}
+	
+	@RequestMapping(value="/addok")
+	public String addOk(){
+		return "admin/admin_blog_addok.ftl";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.GET)
+	public String getEdit(@RequestParam Integer blogId, Model model){
+		Blog blog = blogBiz.getBlogById(blogId);
+		model.addAttribute("blog", blog);
+		List<Category> categories = categoryBiz.getAllCategorys();
+		model.addAttribute("categories",categories);
+		return "admin/admin_blog_add.ftl";
 	}
 	
 	@Autowired

@@ -50,7 +50,7 @@ function switchBar(obj)
     <td width=112> <a href="http://www.eyougo.com" target=_blank >易游国博客公告: </a></td>
 	<td width="315">
 	</td>
-	<td width="120" align="right"><div align="center"><a href="http://www.eyougo.com" target="_blank" title="易游国博客使用和JAVA技术交流"><span class="STYLE1">易游国博客</span></a>&nbsp;&nbsp;<a href="${rc.getContextPath()}/index" target="_blank">站点首页</a></div></td>
+	<td width="120" align="right"><div align="center"><a href="http://www.eyougo.com" target="_blank" title="易游国博客使用和JAVA技术交流"><span class="STYLE1">易游国博客</span></a>&nbsp;&nbsp;<a href="${rc.getContextPath()}" target="_blank">站点首页</a></div></td>
   </tr>
 </table>
 </body>

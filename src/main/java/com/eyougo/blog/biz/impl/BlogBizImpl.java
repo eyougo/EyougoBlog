@@ -54,6 +54,8 @@ public class BlogBizImpl implements BlogBiz {
 			summary = content;
 		}
 		blog.setSummary(summary);
+		blog.setBit(0);
+		blog.setCommentsNum(0);
 		return this.saveBlog(blog);
 	}
 

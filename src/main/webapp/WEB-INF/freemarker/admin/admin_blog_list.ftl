@@ -15,9 +15,11 @@
         }
         
         function deleteBlog(blogId){
-            $("#blogId").val(blogId);
-            $("#manage").attr("action", "${rc.getContextPath()}/admin/blog/delete"); 
-            $("#manage").submit();
+        	if(confirm("确实要删除吗？\n与这篇日志相关的评论也将被删除")){
+            	$("#blogId").val(blogId);
+            	$("#manage").attr("action", "${rc.getContextPath()}/admin/blog/delete"); 
+            	$("#manage").submit();
+            }
         }
 </script>
 </head>
