@@ -30,7 +30,7 @@ public class AdminBlogController {
 	private BlogBiz blogBiz;
 	
 	@RequestMapping(value="/list")
-	public String list(@RequestParam(required=false, defaultValue="0") Integer categoryId, 
+	public String list(@RequestParam(required=false, defaultValue="0") Integer scategory, 
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
 			@RequestParam(required=false, defaultValue="1") Integer page, 
@@ -39,8 +39,8 @@ public class AdminBlogController {
 		pager.setPage(page);
 		pager.setPerPageNum(10);
 		Blog blog = new Blog();
-		if (categoryId != 0) {
-			Category category = categoryBiz.getCategoryById(categoryId);
+		if (scategory != 0) {
+			Category category = categoryBiz.getCategoryById(scategory);
 			blog.setCategory(category);
 		}
 		
@@ -60,7 +60,7 @@ public class AdminBlogController {
 		model.addAttribute("categories",categories);
 		model.addAttribute("pager", pager);
 
-		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("scategory", scategory);
 		model.addAttribute("stype", stype);
 		model.addAttribute("keywords", keywords);
 		return "admin/admin_blog_list.ftl";
@@ -70,7 +70,7 @@ public class AdminBlogController {
 	public String manage(@RequestParam(required=false) List<String> blogIds, 
 			@RequestParam(required=false) String operation,
 			@RequestParam(required=false) Integer toCategoryId,
-			@RequestParam(required=false, defaultValue="0") Integer categoryId,
+			@RequestParam(required=false, defaultValue="0") Integer scategory,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
 			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
@@ -89,7 +89,7 @@ public class AdminBlogController {
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
-		redirectAttributes.addAttribute("categoryId", categoryId);
+		redirectAttributes.addAttribute("scategory", scategory);
 		redirectAttributes.addAttribute("page", page);
 		redirectAttributes.addAttribute("stype", stype);
 		redirectAttributes.addAttribute("keywords", keywords);
@@ -98,7 +98,7 @@ public class AdminBlogController {
 
 	@RequestMapping(value="/delete")
 	public String delete(@RequestParam(required=false) Integer blogId,
-			@RequestParam(required=false, defaultValue="0") Integer categoryId,
+			@RequestParam(required=false, defaultValue="0") Integer scategory,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
 			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
@@ -111,7 +111,7 @@ public class AdminBlogController {
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
-		redirectAttributes.addAttribute("categoryId", categoryId);
+		redirectAttributes.addAttribute("scategory", scategory);
 		redirectAttributes.addAttribute("page", page);
 		redirectAttributes.addAttribute("stype", stype);
 		redirectAttributes.addAttribute("keywords", keywords);
@@ -146,12 +146,41 @@ public class AdminBlogController {
 	}
 	
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
-	public String getEdit(@RequestParam Integer blogId, Model model){
+	public String getEdit(@RequestParam Integer blogId, 
+			@RequestParam(required=false, defaultValue="0") Integer scategory,
+			@RequestParam(required=false, defaultValue="") String stype,
+			@RequestParam(required=false, defaultValue="") String keywords, 
+			@RequestParam(required=false, defaultValue="1") Integer page, Model model){
 		Blog blog = blogBiz.getBlogById(blogId);
 		model.addAttribute("blog", blog);
 		List<Category> categories = categoryBiz.getAllCategorys();
 		model.addAttribute("categories",categories);
-		return "admin/admin_blog_add.ftl";
+		model.addAttribute("scategory",scategory);
+		model.addAttribute("stype",stype);
+		model.addAttribute("keywords",keywords);
+		model.addAttribute("page",page);
+		return "admin/admin_blog_edit.ftl";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.POST)
+	public String postEdit(Blog blog,  
+			@RequestParam(required=false, defaultValue="0") Integer scategory,
+			@RequestParam(required=false, defaultValue="") String stype,
+			@RequestParam(required=false, defaultValue="") String keywords, 
+			@RequestParam(required=false, defaultValue="1") Integer page, Model model) throws InternalException{
+		
+		try {
+			blogBiz.saveBlog(blog);
+		} catch (InternalException e) {
+			LOG.error(e.getMessage(), e);
+			throw e;
+		}
+		
+		model.addAttribute("scategory",scategory);
+		model.addAttribute("stype",stype);
+		model.addAttribute("keywords",keywords);
+		model.addAttribute("page",page);
+		return "admin/admin_blog_edit.ftl";
 	}
 	
 	@Autowired

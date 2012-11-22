@@ -33,10 +33,10 @@
       <td class="tdbg" width="10%">日志分类
       <div align="center"></div></td>
       <td class="tdbg" width="21%">
-      	<select name="categoryId">
+      	<select name="scategory">
       		<option value="0">全部</option>
       		<#list categories as category>
-      			<option value="${category.id}" <#if category.id==categoryId>selected</#if>>${category.category}</option>
+      			<option value="${category.id}" <#if category.id==scategory>selected</#if>>${category.category}</option>
       		</#list>
       	</select>
       </td>
@@ -104,7 +104,11 @@
     <td class="tdbg"><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">${blog.title}</a></td>
     <td class="tdbg">${blog.bit}/${blog.commentsNum}</td>
     <td class="tdbg">${blog.date}</td>
-    <td class="tdbg" width="5%"><div align="center"><a href="${rc.getContextPath()}/admin/blog/edit?id=${blog.id}">修改</a></div></td>
+    <td class="tdbg" width="5%">
+    	<div align="center">
+    		<a href="${rc.getContextPath()}/admin/blog/edit?scategory=${scategory}&keywords=${keywords?url}&stype=${stype}&page=${pager.page}&blogId=${blog.id}">修改</a>
+    	</div>
+    </td>
     <td class="tdbg" width="5%"><div align="center"><a href="javascript:deleteBlog(${blog.id});">删除</a></div></td>
   </tr>
   </#list>
@@ -123,7 +127,7 @@
     <td class="tdbg"><INPUT TYPE="submit" value="操作">
     <input type="hidden" name="blogId" id="blogId" value=""/>
     <input type="hidden" name="page" value="${pager.page}"/>
-    <input type="hidden" name="categoryId" value="${categoryId}"/>
+    <input type="hidden" name="scategory" value="${scategory}"/>
     <input type="hidden" name="stype" value="${stype}"/>
     <input type="hidden" name="keywords" value="${keywords}"/>
     </td>

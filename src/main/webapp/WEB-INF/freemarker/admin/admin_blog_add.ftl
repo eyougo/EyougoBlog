@@ -99,7 +99,7 @@ function checkpostdata()
   {alert("内容不能为空");
   return false;
   }
-  if(document.getElementById("category").value=="0")
+  if(document.getElementById("category").value=="")
   {alert("你没有选择分类");
 	  document.getElementById("category").focus();
 	  return false;
@@ -140,7 +140,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="4">
-						<input type="text" name="title" id="title" cssStyle="width:300;"/>
+						<input type="text" name="title" id="title" style="width:300;"/>
 						最多不应超过50字
 					</td>
 				</tr>
@@ -153,6 +153,7 @@ function insertSign(textareaId,summarySign){
 					<td class="tdbg" colspan="4">
 						<label>
 							<select name="category.id" id="category">
+								<option value="">选择分类</option>
 								<#list categories as category>
       							<option value="${category.id}">${category.category}</option>
       							</#list>
@@ -256,7 +257,7 @@ function insertSign(textareaId,summarySign){
 						</div>
 					</td>
 					<td class="tdbg" colspan="8">
-							<input type="text" name="date" id="date" cssStyle="width:200;"/>
+							<input type="text" name="date" id="date" style="width:200;"/>
 							<input type="button" id="trigger" value=">>>" />
 							<script type="text/javascript">
 									document.getElementById("date").value=new Date().format("yyyy-MM-dd hh:mm:ss");
