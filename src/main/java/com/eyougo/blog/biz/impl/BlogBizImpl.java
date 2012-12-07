@@ -3,6 +3,12 @@ package com.eyougo.blog.biz.impl;
 import java.util.Iterator;
 import java.util.List;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.FieldsMappingOptions;
+import org.dozer.loader.api.TypeMappingOptions;
+
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogBiz;
 import com.eyougo.blog.comm.EyougoConstant;
@@ -28,7 +34,37 @@ public class BlogBizImpl implements BlogBiz {
 	}
 	
 	@Override
+	public Blog updateBlog(Blog blog) throws InternalException {
+		try {
+			Blog updateBlog = this.getBlogDao().findBlogById(blog.getId());
+			DozerBeanMapper mapper = new DozerBeanMapper();
+			BeanMappingBuilder builder = new BeanMappingBuilder() {
+			      protected void configure() {
+			        mapping(Blog.class, Blog.class, TypeMappingOptions.mapNull(false))
+			        .fields("category", "category", FieldsMappingOptions.copyByReference());
+			        // XXX 直接将category引用传递，否则dozer会递归更新原category对象中的属性为null，导致hibernate认为原category对象变化产生级联更新出错
+			        // 这样hibernate只会考虑级联列
+			      }
+			};
+			
+			mapper.addMapping(builder);
+			//BeanMappingBuilder abuilder = new BeanMappingBuilder() {
+			//      protected void configure() {
+			//        mapping(Category.class, Category.class, TypeMappingOptions.mapNull(false));
+			//      }
+			//};
+			//mapper.addMapping(abuilder);
+			mapper.map(blog, updateBlog);
+			updateBlog = this.getBlogDao().saveBlog(updateBlog);
+			return updateBlog;
+		} catch (Exception e) {
+			throw new InternalException(e);
+		}
+	}
+
+	@Override
 	public Blog createBlog(Blog blog) throws InternalException {
+		
 		blog.setBit(0);
 		blog.setCommentsNum(0);
 		return this.saveBlog(blog);

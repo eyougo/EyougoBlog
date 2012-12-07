@@ -167,22 +167,26 @@ public class AdminBlogController {
 			@RequestParam(required=false, defaultValue="0") Integer scategory,
 			@RequestParam(required=false, defaultValue="") String stype,
 			@RequestParam(required=false, defaultValue="") String keywords, 
-			@RequestParam(required=false, defaultValue="1") Integer page, Model model) throws InternalException{
+			@RequestParam(required=false, defaultValue="1") Integer page, RedirectAttributes redirectAttributes) throws InternalException{
 		
 		try {
-			blogBiz.saveBlog(blog);
+			blogBiz.updateBlog(blog);
 		} catch (InternalException e) {
 			LOG.error(e.getMessage(), e);
 			throw e;
 		}
 		
-		model.addAttribute("scategory",scategory);
-		model.addAttribute("stype",stype);
-		model.addAttribute("keywords",keywords);
-		model.addAttribute("page",page);
-		return "admin/admin_blog_edit.ftl";
+		redirectAttributes.addAttribute("scategory", scategory);
+		redirectAttributes.addAttribute("page", page);
+		redirectAttributes.addAttribute("stype", stype);
+		redirectAttributes.addAttribute("keywords", keywords);
+		return "redirect:/admin/blog/editok";
 	}
 	
+	@RequestMapping(value="/editok")
+	public String editOk(){
+		return "admin/admin_blog_editok.ftl";
+	}
 	@Autowired
 	public void setCategoryBiz(CategoryBiz categoryBiz) {
 		this.categoryBiz = categoryBiz;

@@ -13,13 +13,13 @@
   	<property name="date">
   		<column name="date" sql-type="datetime"></column>
   	</property>
-  	<property name="bit" type="int"></property>
-  	<property name="commentsNum" type="int"></property>
-  	<property name="top" type="int"/>
+  	<property name="bit"></property>
+  	<property name="commentsNum"></property>
+  	<property name="top"/>
   	<property name="isDraft" type="java.lang.Boolean"/>
   	<property name="copyright" type="java.lang.Boolean"/>
-  	<property name="emotion" type="int"></property>
-  	<property name="cmtUser" type="int"></property>
+  	<property name="emotion"></property>
+  	<property name="cmtUser"></property>
   	<many-to-one name="category" column="category_id" fetch="join"></many-to-one>
   	<set name="comments"  inverse="true" cascade="all" order-by="commentDate asc">
   		<key column="BLOG_ID" />

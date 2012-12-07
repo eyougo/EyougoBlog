@@ -37,6 +37,12 @@ public class BlogDaoImpl implements BlogDao {
 		return blog;
 	}
 
+	public Blog loadBlogById(Integer blogId) {
+		Blog blog = (Blog)this.getSessionFactory().getCurrentSession()
+			.load(Blog.class, blogId);
+		return blog;
+	}
+	
 	public List<Blog> findAllBlogList(final OrderProperty[] op,
 			final int firstResult, final int maxResults) {
 		List<Blog> list = this.findBlogListByCategory(null,op,firstResult, maxResults);

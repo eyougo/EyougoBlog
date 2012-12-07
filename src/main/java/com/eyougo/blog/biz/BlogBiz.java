@@ -13,6 +13,8 @@ public interface BlogBiz {
 
 	Blog saveBlog(Blog blog) throws InternalException;
 
+	Blog updateBlog(Blog blog) throws InternalException;
+	
 	Blog createBlog(Blog blog) throws InternalException;
 	
 	Blog getBlogById(Integer blogId);

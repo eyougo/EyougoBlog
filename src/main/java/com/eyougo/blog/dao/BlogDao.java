@@ -27,6 +27,13 @@ public interface BlogDao {
 	 */
 	Blog findBlogById(Integer blogId);
 	/**
+	 * 根据日志Id查询出日志信息
+	 * @param blogId
+	 * 					Integer
+	 * @return Blog
+	 */
+	Blog loadBlogById(Integer blogId);
+	/**
 	 * 根据排序和分页条件查询日志信息
 	 * @param op
 	 * @param firstResult
