@@ -18,7 +18,7 @@
 			<li><a href="${rc.getContextPath()}/blog/list/${category.id}-1">${category.category}</a></li>
 			</#list>
 			<li><a href="${rc.getContextPath()}/message/list/1">MESSAGES</a></li>
-			<li><a href="${rc.getContextPath()}/link/list/1">LINKS</a></li>
+			<#--<li><a href="${rc.getContextPath()}/link/list/1">LINKS</a></li>-->
 		</ul>
 		</div>
 		<div id="pagebody">

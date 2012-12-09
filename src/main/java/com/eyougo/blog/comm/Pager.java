@@ -15,8 +15,6 @@ public class Pager {
 
 	private int navigatePageNum=6; //导航页码数
 	
-    private int[] naviPages;  //所有导航页号
-	
 	public Pager() {
 	}
 
@@ -68,6 +66,7 @@ public class Pager {
     }
 
 	public int[] getNaviPages() {
+		int[] naviPages;  //所有导航页号
 		int allPage = getAllPage();
 		//当总页数小于或等于导航页码数时
         if(allPage<=navigatePageNum){

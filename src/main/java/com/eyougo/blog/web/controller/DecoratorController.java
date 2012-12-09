@@ -47,6 +47,8 @@ public class DecoratorController {
 		}
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("categoryNumMap", categoryNumMap);
+		long messageNum = messageBiz.getAllMessageNum();
+		model.addAttribute("messageNum", messageNum);
 		List<Blog> recentBlogList = blogBiz.getRecentPublishedBlogs(8);
 		model.addAttribute("recentBlogList", recentBlogList);
 		List<Comment> recentCommentList =  commentBiz.getRecentComments(8);

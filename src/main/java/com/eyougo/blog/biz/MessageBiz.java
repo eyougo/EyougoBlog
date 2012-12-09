@@ -12,7 +12,7 @@ public interface MessageBiz {
 
 	long getAllMessageNum();
 
-	List<Message> getMessageList(Pager pager) throws InternalException;
+	List<Message> getMessageList(Pager pager);
 
 	boolean deleteMessageById(Integer messageId) throws InternalException;
 

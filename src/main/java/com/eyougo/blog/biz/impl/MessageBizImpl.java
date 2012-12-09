@@ -47,9 +47,9 @@ public class MessageBizImpl implements MessageBiz {
 	 * @see com.eyougo.blog.biz.impl.MessageBiz#getMessageList(com.eyougo.blog.comm.Pager)
 	 */
 	@Override
-	public List<Message> getMessageList(Pager pager) throws InternalException {
+	public List<Message> getMessageList(Pager pager) {
 		OrderProperty[] op = { new OrderProperty("messageDate", EyougoConstant.ORDER_DESC) };
-		// 设置分页总数
+		// 璁剧疆鍒嗛〉鎬绘暟
 		if (pager == null) {
 			pager = new Pager();
 		}

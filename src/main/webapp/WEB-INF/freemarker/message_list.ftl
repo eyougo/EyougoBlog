@@ -1,19 +1,17 @@
-<#import "commons/pager.ftl" as pager> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>MESSAGES</title>
-<link href="<@s.url value="/css/index.blog.css" includeParams="none"/>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<@s.url value="/fckeditor/fckeditor.js" includeParams="none"/>"> </script>
+<script type="text/javascript" src="${rc.contextPath}/fckeditor/fckeditor.js"> </script>
 <script type="text/javascript"> 
 		$(document).ready(
 			function() { 
-				var sBasePath = "<@s.url value="/fckeditor/" includeParams="none"/>"  //获得fckeditor的路径 
-				var oFCKeditor = new FCKeditor( 'message.content' ) ; 
+				var sBasePath = "${rc.contextPath}/fckeditor/"  //获得fckeditor的路径 
+				var oFCKeditor = new FCKeditor( 'content' ) ; 
 				oFCKeditor.BasePath = sBasePath ; 
-				oFCKeditor.Width = "70%";
-				oFCKeditor.Height = "200px";
+				oFCKeditor.Width = "80%";
+				oFCKeditor.Height = "240px";
 				oFCKeditor.ToolbarSet = "Comment";
 				oFCKeditor.ReplaceTextarea() ; 
 			} 
@@ -25,10 +23,10 @@
 				$('#nickname').focus();
 				return false;
 			}
-			if($.trim(getEditorHTMLContents("message.content")) == ''){
+			if($.trim(getEditorHTMLContents("content")) == ''){
 				alert("请输入留言内容");
 				$('#content').focus();
-				setEditorContents("message.content","")
+				setEditorContents("content","")
 				return false;
 			}
 			$('#message').submit();
@@ -48,77 +46,88 @@
 <body>
 	<div id="mainbody">
 		<h5>MESSAGES</h5>
-		<@s.iterator id="message" value="messageList">
+		<#list messageList as message>
 			<div id="nr">
 				<h2>
-				<@s.property value="#message.contact.nickname" />&nbsp;&nbsp;&nbsp;&nbsp;[<@s.date name="#message.messageDate"  format="yyyy-MM-dd HH:mm:ss"/>]
-				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#pmessage" onclick="reply('<@s.property value="#message.contact.nickname" />');">REPLY</a>
-				<#if Session[stack.findValue("@com.eyougo.blog.comm.EyougoConstant@USER_SESSION_KEY")]?exists>
-					<#if Session[stack.findValue("@com.eyougo.blog.comm.EyougoConstant@ADMIN_SESSION_KEY")]?exists>
-							&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<@s.url action='adminMessage_delete' namespace='admin' includeParams='none'><@s.param name='messageId' value='#message.id'/></@s.url>">DELETE</a>
-					</#if>
+				${message.contact.nickname}&nbsp;&nbsp;&nbsp;&nbsp;[${message.messageDate}]
+				&nbsp;&nbsp;&nbsp;&nbsp;<a href="#pcomment" onclick="reply('${message.contact.nickname}');">REPLY</a>
+				<#if Session["admin"]?exists>
+						&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${rc.contextPath}/admin/message/delete?messageId=${message.id}">DELETE</a>
 				</#if>
 				</h2>
-				<p><@s.property value="#message.content" escape="false"/></p> 
+				<p>${message.content}</p> 
 			</div><br>
-		</@s.iterator>
+		</#list>
 		<br>
-		<center><@pager.p perpage=action.pager.perPageNum offset=action.pager.offset totalnum=action.pager.totalNum  /> </center>
-		<div id="pmessage">
+		<center>
+			<#if pager.prePage??><a href="${rc.getContextPath()}/message/list/${pager.page-1}">Previous</a></#if>
+			&nbsp;&nbsp;
+			<#list pager.naviPages as naviPage>
+				<a href="${rc.getContextPath()}/message/list/${naviPage}">
+					<#if naviPage==pager.page><b></#if>
+					${naviPage}
+					<#if naviPage==pager.page></b></#if>
+				</a>
+				&nbsp;
+			</#list>
+			&nbsp;
+			<#if pager.nextPage??><a href="${rc.getContextPath()}/message/list/${pager.page+1}">Next</a></#if>
+		</center>
+		<div id="pcomment">
 				<h5>Post Message</h5> 
-				<@s.form method="post" action="message_addexe" id="message"> 
+				<form method="post" action="${rc.getContextPath()}/message/add" id="message"> 
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr id="replyTr" style="display:none;"> 
-						 	<td cssClass="pd">
+						 	<td class="pd">
 						 	<strong>Reply To:
-						 	<@s.textfield name="replyTo" id="replyTo"  cssClass="pd" size="12" value="" readonly="true"/>
+						 	<input type="text" name="replyTo" id="replyTo"  class="pd" size="12" value="" readonly="true"/>
 						 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						 	<a href="####" onclick="cancel();">CANCEL!</a></strong> 
+						 	<a href="#" onclick="cancel();">CANCEL!</a></strong> 
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
 						 	<strong>Your name:      <label>
-						 	<@s.textfield name="message.contact.nickname" id="nickname"  cssClass="pd" size="12" value="%{user.contact.nickname}"/>
+						 	<input type="text" name="contact.nickname" id="nickname"  class="pd" size="12" value=""/>
 						 	</label></strong> 
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
 						 	<strong>Your email:      <label>
-						 	<@s.textfield name="message.contact.email" id="email"  cssClass="pd" size="12" value="%{user.contact.email}"/>
+						 	<input type="text" name="contact.email" id="email"  class="pd" size="12" value=""/>
 						 	</label></strong> 
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
 						 	<strong>Your QQ:      <label>
-						 	<@s.textfield name="message.contact.qq" id="qq"  cssClass="pd" size="12" value="%{user.contact.qq}"/>
+						 	<input type="text" name="contact.qq" id="qq"  class="pd" size="12" value=""/>
 						 	</label></strong> 
 							</td>
 						</tr>
 						<tr> 
 						 	<td>
 						 	<strong>ValidateCode:     <label>
-							<@s.textfield name="validateCode" id="validateCode" cssClass="pd" size="12" />
-							<img src="<@s.url action='validationCode'/>" style="cursor:hand;vertical-align:top" onclick="this.src='<@s.url action ='validationCode'/>';"/>
+							<input type="text" name="validateCode" id="validateCode" class="pd" size="12" />
+							<img src="" style="cursor:hand;vertical-align:top" onclick="this.src='';"/>
 							</label></strong>
 						<tr>
 						<tr>
      						<td width="100%">
-     							<@s.textarea rows="6" cols="40" name="message.content" id="content"></@s.textarea>
+     							<textarea rows="6" cols="40" name="content" id="content"></textarea>
      						</td>
      					</tr>
      					<tr>
      						<td>
      							<label>
-									<a href="####"><img border="0" src="images/submit.gif" onclick="submitMessage();"/></a>
+									<a href="####"><img border="0" src="${rc.contextPath}/images/submit.gif" onclick="submitMessage();"/></a>
 								</label>
 							</td>
 						</tr>
 						
 					</table>
-				</@s.form>
+				</form>
 			</div>
 	</div>  
 </body>

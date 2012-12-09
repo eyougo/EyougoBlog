@@ -13,16 +13,21 @@
 				<ul>
 					<#list categoryList as category>
 					<li>
-						<a href="${rc.getContextPath()}/blog/list/${category.id}-1" title="${category.category}">${category.category}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${categoryNumMap[category.category]}</a>
+						<a href="${rc.getContextPath()}/blog/list/${category.id}-1" title="${category.category}">${category.category}
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${categoryNumMap[category.category]}</a>
 					</li>
 					</#list>
 					<li>
-						<a href="${rc.getContextPath()}/message/list/1" title="MESSAGES">MESSAGES&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="${rc.getContextPath()}/message/list/1" title="MESSAGES">MESSAGES
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;${messageNum}</a>
 					</li>
+					<#--
 					<li>
 						<a href="${rc.getContextPath()}/link/list/1" title="LINKS">LINKS&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					</li>
-					
+					-->
 				</ul>
 			</div>
 			<div id="Blogs">
