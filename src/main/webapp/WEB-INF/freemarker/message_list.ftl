@@ -108,10 +108,11 @@
 						</tr>
 						<tr> 
 						 	<td>
-						 	<strong>ValidateCode:     <label>
-							<input type="text" name="validateCode" id="validateCode" class="pd" size="12" />
-							<img src="" style="cursor:hand;vertical-align:top" onclick="this.src='';"/>
-							</label></strong>
+						 	<strong>Captcha:     <label>
+							<input type="text" name="captcha" id="captcha" class="pd" size="12" />
+							</label>
+							<img src="${rc.contextPath}/captcha" style="cursor:hand;vertical-align:top" onclick="this.src='${rc.contextPath}/captcha';"/>
+							</strong>
 						<tr>
 						<tr>
      						<td width="100%">

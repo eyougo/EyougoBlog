@@ -100,10 +100,10 @@
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr> 
 						 	<td >
-						 	<input type="hidden" name="blogId" id="blogId" value="${blog.id}"/>
-						 	<strong>Your name:      
+						 	<input type="hidden" name="blog.id" id="blog.id" value="${blog.id}"/>
+						 	<strong>Your Name:      
 						 		<label>
-						 			<input type="text" name="nickname" id="nickname"  class="pd" size="12" value=""/>
+						 			<input type="text" name="contact.nickname" id="nickname"  class="pd" size="12" value=""/>
 						 		</label>
 						 	</strong>
 						 	<br/>
@@ -113,7 +113,7 @@
 						 	<td>
 						 	<strong>Your Email:      
 						 		<label>
-						 		<input type="text" name="email" id="email"  class="pd" size="22" value=""/>
+						 		<input type="text" name="contact.email" id="email"  class="pd" size="22" value=""/>
 						 		</label>
 						 	</strong>
 						 	<br/>
@@ -121,8 +121,10 @@
 						</tr>
 						<tr> 
 						 	<td>
-						 	<strong>ValidateCode:     <label>
-							</label></strong>
+						 	<strong>Captcha:
+						 	<label><input type="text" name="captcha" id="captcha"  class="pd" size="22" value=""/>
+							</label><img src="${rc.contextPath}/captcha" style="cursor:hand;vertical-align:top" onclick="this.src='${rc.contextPath}/captcha';"/>
+							</strong>
 							<br/>
 							</td>
 						<tr>

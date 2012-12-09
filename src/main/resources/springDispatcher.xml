@@ -55,9 +55,36 @@
 		<property name="templateLoaderPath" value="/WEB-INF/freemarker" /> <!-- 模板加载路径 -->
 		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
 	</bean>
+	
+	<mvc:interceptors>  
+        <mvc:interceptor>  
+            <mvc:mapping path="/admin/**" />  
+            <bean class="com.eyougo.blog.web.interceptor.AdminInterceptor" />  
+        </mvc:interceptor>  
+    </mvc:interceptors> 
 	<!-- 对静态资源文件的访问 -->
 	<mvc:resources mapping="/images/**" location="/images/" cache-period="31556926" />
 	<mvc:resources mapping="/js/**" location="/js/" cache-period="31556926" />
 	<mvc:resources mapping="/css/**" location="/css/" cache-period="31556926" />
 	<mvc:resources mapping="/fckeditor/**" location="/fckeditor/" cache-period="31556926" />
+	
+	<!-- captcha -->
+	<bean id="captchaProducer"
+        class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+        	<bean class="com.google.code.kaptcha.util.Config">
+        		<constructor-arg type="java.util.Properties">
+        			<props>
+        				<prop key="kaptcha.image.width">80</prop> 
+       					<prop key="kaptcha.image.height">25</prop>
+       					<prop key="kaptcha.textproducer.font.size">23</prop>
+        				<prop key="kaptcha.textproducer.char.string">0123456789</prop>
+        				<prop key="kaptcha.textproducer.char.length">4</prop>
+        				<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+        				<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+        			</props>
+        		</constructor-arg>
+        	</bean>
+        </property>
+	</bean>
 </beans>

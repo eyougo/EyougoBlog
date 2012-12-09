@@ -75,7 +75,7 @@ Input {
 							<img src="${rc.getContextPath()}/images/admin/exblog.gif" width="180" height="83">
 						</div>
 					</td>
-					<td width="344" background="${rc.getContextPath()}/images/entry2.gif">
+					<td width="400">
 						<table width="100%" border="0" cellspacing="8" cellpadding="0"
 							align="center">
 							<tr align="center">
@@ -105,11 +105,15 @@ Input {
 									<span class="style1">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
 								</td>
 								<td>&nbsp;
-									<input type=text name="validatecode" maxlength="20"
+									<input type=text name="captcha" maxlength="20"
 										cssStyle="width: 100px; border-style: solid; border-width: 1; padding-left: 4; padding-right: 4; padding-top: 1; padding-bottom: 1"
 										onmouseover="this.style.background='#D6DFF7';"
 										onmouseout="this.style.background='#FFFFFF'"
 										onfocus="this.select(); "/>
+										<img src="${rc.contextPath}/captcha" style="cursor:hand;vertical-align:top" onclick="this.src='${rc.contextPath}/captcha';"/>
+										<#if captchaError??>
+											<br/>${captchaError}
+										</#if>
 								</td>
 							</tr>
 

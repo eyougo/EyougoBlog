@@ -18,7 +18,7 @@ import com.eyougo.blog.util.EyougoStringUtil;
 
 @Controller
 @RequestMapping(value="/admin/login")
-public class AdminLoginController {
+public class AdminLoginController extends BaseController{
 	private BlogConfigBiz blogConfigBiz;
 	private ResourceBundleMessageSource messageSource;
 	
@@ -40,7 +40,12 @@ public class AdminLoginController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String post(@RequestParam String adminPassword, HttpSession session, Model model){
+	public String post(@RequestParam String adminPassword, @RequestParam String captcha, HttpSession session, Model model){
+		if (!this.validateCaptcha(session, captcha)) {
+			model.addAttribute("captchaError",messageSource.getMessage("error.captcha", null, Locale.getDefault()));
+			return "/admin/admin_login.ftl";
+		}
+		
 		String vAdminPassword = blogConfigBiz.getAdminPassword();
 		if (adminPassword!=null&&EyougoStringUtil.hash(adminPassword).equals(vAdminPassword)){
 			session.setAttribute("admin", "admin");

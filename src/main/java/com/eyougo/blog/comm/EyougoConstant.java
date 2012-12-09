@@ -13,6 +13,8 @@ public class EyougoConstant {
 	
 	public static final String COUNTER_KEY = "counter";
 	
+	public static final String KAPTCHA_SESSION_KEY= "kaptcha";
+	
 	/**
 	 * action的url的后缀
 	 */
