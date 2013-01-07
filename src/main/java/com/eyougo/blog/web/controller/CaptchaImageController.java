@@ -1,9 +1,11 @@
 package com.eyougo.blog.web.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -46,6 +48,11 @@ public class CaptchaImageController {
             
             // create the image with the text
             BufferedImage bi = captchaProducer.createImage(capText);
+            
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bi, "jpg", baos);
+            byte[] jpegData = baos.toByteArray();
+            response.setHeader("Content-Length", String.valueOf(jpegData.length));
             
             // write the data out
             ImageIO.write(bi, "jpg", outputStream);
