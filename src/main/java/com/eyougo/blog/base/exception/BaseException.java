@@ -1,7 +1,5 @@
 package com.eyougo.blog.base.exception;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 public class BaseException extends Exception {
 
@@ -24,18 +22,6 @@ public class BaseException extends Exception {
 
 	public BaseException(Throwable cause) {
 		super(cause);
-	}
-
-	public String getStackTraceString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("详细信息：");
-		sb.append("\n");
-		StringWriter stringWriter = new StringWriter();
-		PrintWriter printWriter = new PrintWriter(stringWriter);
-		this.printStackTrace(printWriter);
-		sb.append(stringWriter.getBuffer());
-		printWriter.close();
-		return sb.toString();
 	}
 
 }

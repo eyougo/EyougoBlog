@@ -48,6 +48,7 @@
 				<value>com/eyougo/blog/entity/BlogConfig.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Category.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Blog.hbm.xml</value>
+				<value>com/eyougo/blog/entity/BlogView.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Comment.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Message.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Link.hbm.xml</value>
@@ -55,6 +56,11 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
+			    <prop key="hibernate.cache.region.factory_class">
+					${hibernate.cache.region.factory_class}
+				</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
 				<prop key="hibernate.dialect">
 					${hibernate.dialect}
 				</prop>
@@ -108,6 +114,9 @@
 	<bean id="blogDao" class="com.eyougo.blog.dao.hbimpl.BlogDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="blogViewDao" class="com.eyougo.blog.dao.hbimpl.BlogViewDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="messageDao" class="com.eyougo.blog.dao.hbimpl.MessageDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -137,6 +146,10 @@
 	<bean id="blogBiz" class="com.eyougo.blog.biz.impl.BlogBizImpl">
 		<property name="blogDao" ref="blogDao" />
 		<property name="categoryDao" ref="categoryDao" />
+	</bean>
+	
+	<bean id="blogViewBiz" class="com.eyougo.blog.biz.impl.BlogViewBizImpl">
+		<property name="blogViewDao" ref="blogViewDao" />
 	</bean>
 	
 	<bean id="messageBiz" class="com.eyougo.blog.biz.impl.MessageBizImpl"> 

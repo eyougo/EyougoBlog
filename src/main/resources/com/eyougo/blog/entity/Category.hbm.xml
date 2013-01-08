@@ -5,6 +5,7 @@
 <hibernate-mapping package="com.eyougo.blog.hbxml">
   <class name="com.eyougo.blog.entity.Category" table="BLOG_CATEGORYS"
   	dynamic-update="true">
+  	<cache usage="nonstrict-read-write" region="categoryCache"/>
   	<id name="id">
 		<generator class="identity" />
   	</id>

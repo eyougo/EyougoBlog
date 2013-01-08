@@ -17,7 +17,6 @@ public class Blog {
 	private String summary;
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
 	private Date date;	//发表时间
-	private Integer bit;	//点击数
 	private Integer commentsNum;//评论数
 	private Integer top;//是否置顶，值越大越靠前
 	private Integer emotion;//表情
@@ -28,6 +27,8 @@ public class Blog {
 	private Integer cmtUser;	//可发表评论的角色，0为游客，1为用户，-1为不能评论
 	private Boolean copyright;//是否包含版权声明
 	private Set<Comment> comments;	//评论集合
+	
+	private BlogView blogView;
 	
 	public Blog() {
 		super();
@@ -108,14 +109,6 @@ public class Blog {
 		this.date = date;
 	}
 
-	public Integer getBit() {
-		return bit;
-	}
-
-	public void setBit(Integer bit) {
-		this.bit = bit;
-	}
-
 	public Integer getEmotion() {
 		return emotion;
 	}
@@ -162,6 +155,14 @@ public class Blog {
 
 	public void setCommentsNum(Integer commentsNum) {
 		this.commentsNum = commentsNum;
+	}
+
+	public BlogView getBlogView() {
+		return blogView;
+	}
+
+	public void setBlogView(BlogView blogView) {
+		this.blogView = blogView;
 	}
 	
 }

@@ -64,8 +64,6 @@ public class BlogBizImpl implements BlogBiz {
 
 	@Override
 	public Blog createBlog(Blog blog) throws InternalException {
-		
-		blog.setBit(0);
 		blog.setCommentsNum(0);
 		return this.saveBlog(blog);
 	}
@@ -90,7 +88,6 @@ public class BlogBizImpl implements BlogBiz {
 			summary = content;
 		}
 		blog.setSummary(summary);
-		blog.setBit(0);
 		blog.setCommentsNum(0);
 		return this.saveBlog(blog);
 	}
@@ -106,7 +103,7 @@ public class BlogBizImpl implements BlogBiz {
 		OrderProperty[] op = { new OrderProperty("date", EyougoConstant.ORDER_DESC) };
 		Blog blog = new Blog();
 		blog.setIsDraft(false);
-		List<Blog> blogs = this.getBlogDao().findBlogListLikeBlog(blog, op, 0, recentNum);
+		List<Blog> blogs = this.getBlogDao().findBlogListLikeBlogWithOutView(blog, op, 0, recentNum);
 		return blogs;
 	}
 

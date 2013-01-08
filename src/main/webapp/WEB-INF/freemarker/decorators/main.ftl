@@ -22,8 +22,6 @@
 		</ul>
 		</div>
 		<div id="pagebody">
-			<div id="sidebar">
-			</div>
 			<sitemesh:write property="body"/>
 		</div>
 		<div id="foot">${blogCopyright}</div></div>

@@ -39,7 +39,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	@SuppressWarnings("unchecked")
 	public List<Category> findAllCategory() {
 		List<Category> categorys = this.getSessionFactory().getCurrentSession()
-			.createQuery("from Category category order by category.orderNum").list();
+			.createQuery("from Category category order by category.orderNum").setCacheable(true).setCacheRegion("categoryCache").list();
 		return categorys;
 	}
 
@@ -80,6 +80,8 @@ public class CategoryDaoImpl implements CategoryDao {
 				}
 			}
 		}
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("categoryCache");
 		List list=criteria.list();
 		return list;
 	}

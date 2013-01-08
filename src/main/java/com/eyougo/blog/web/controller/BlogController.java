@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.eyougo.blog.base.exception.InternalException;
 import com.eyougo.blog.biz.BlogBiz;
 import com.eyougo.blog.biz.BlogConfigBiz;
+import com.eyougo.blog.biz.BlogViewBiz;
 import com.eyougo.blog.biz.CategoryBiz;
 import com.eyougo.blog.biz.CommentBiz;
 import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.comm.Pager;
 import com.eyougo.blog.entity.Blog;
+import com.eyougo.blog.entity.BlogView;
 import com.eyougo.blog.entity.Category;
 import com.eyougo.blog.entity.Comment;
 
@@ -36,6 +38,8 @@ public class BlogController extends BaseController{
 	private BlogConfigBiz blogConfigBiz;
 	
 	private CommentBiz commentBiz;
+	
+	private BlogViewBiz blogViewBiz;
 	
 	@RequestMapping(value="/list/{categoryId}-{page}")
 	public String list(@PathVariable Integer categoryId, @PathVariable Integer page, Model model){
@@ -63,12 +67,8 @@ public class BlogController extends BaseController{
 		Blog blog = this.blogBiz.getBlogById(blogId);
 		if(blog.getIsDraft()==false
 				|| session.getAttribute(EyougoConstant.ADMIN_SESSION_KEY)!=null ){
-			blog.setBit(blog.getBit()+1);
-			try {
-				this.blogBiz.saveBlog(blog);
-			} catch (InternalException e) {
-				LOG.error(e.getMessage(), e);
-			}
+			BlogView blogView = blogViewBiz.addBlogView(blog.getBlogView());
+			blog.setBlogView(blogView);
 			model.addAttribute("blog", blog);
 			Blog previousBlog = this.blogBiz.getBlogBeforeThisBlog(blog);
 			model.addAttribute("previousBlog", previousBlog);
@@ -115,6 +115,11 @@ public class BlogController extends BaseController{
 	@Autowired
 	public void setCommentBiz(CommentBiz commentBiz) {
 		this.commentBiz = commentBiz;
+	}
+
+	@Autowired
+	public void setBlogViewBiz(BlogViewBiz blogViewBiz) {
+		this.blogViewBiz = blogViewBiz;
 	}
 	
 }

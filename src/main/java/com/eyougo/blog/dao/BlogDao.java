@@ -82,6 +82,17 @@ public interface BlogDao {
 	 */
 	List<Blog> findBlogListLikeBlog(Blog blog, OrderProperty[] op, 
 			int firstResult, int maxResults); 
+	
+	/**
+	 * 
+	 * @param blog
+	 * @param op
+	 * @param firstResult
+	 * @param maxResults
+	 * @return
+	 */
+	List<Blog> findBlogListLikeBlogWithOutView(Blog blog, OrderProperty[] op, 
+			int firstResult, int maxResults); 
 	/**
 	 * 
 	 * @param blog

@@ -2,6 +2,8 @@ package com.eyougo.blog.dao.hbimpl;
 
 import java.util.List;
 
+import javax.security.auth.login.CredentialException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -65,7 +67,7 @@ public class BlogDaoImpl implements BlogDao {
 			hql=hql+" where blog.category=:category";
 		}
 		List l = this.getSessionFactory().getCurrentSession()
-			.createQuery(hql).setEntity("category", category).list();
+			.createQuery(hql).setEntity("category", category).setCacheable(true).setCacheRegion("blogCache").list();
 		if (l == null || l.isEmpty()) {
 			return 0;
 		} else {
@@ -82,6 +84,8 @@ public class BlogDaoImpl implements BlogDao {
 		if (category != null) {
 			c.add(Restrictions.eq("category", category));
 		}
+
+		c.createAlias("blogView", "blogView", Criteria.LEFT_JOIN);
 		if (op != null && op.length > 0) {
 			for (int i = 0; i < op.length; i++) {
 				if (StringUtils.isNotBlank(op[i].getOrderBy())) {
@@ -103,7 +107,7 @@ public class BlogDaoImpl implements BlogDao {
 		this.getSessionFactory().getCurrentSession().delete(blog);
 	}
 
-	public List<Blog> findBlogListLikeBlog(Blog blog, OrderProperty[] op,
+	public List<Blog> findBlogListLikeBlogWithOutView(Blog blog, OrderProperty[] op,
 			int firstResult, int maxResults) {
 		Criteria criteria = this.getSessionFactory().getCurrentSession().createCriteria(Blog.class);
 		if(blog!=null){
@@ -114,7 +118,6 @@ public class BlogDaoImpl implements BlogDao {
 				criteria.add(Restrictions.eq("category", blog.getCategory()));
 			}
 		}
-		
 		if (op != null && op.length > 0) {
 			for (int i = 0; i < op.length; i++) {
 				if (StringUtils.isNotBlank(op[i].getOrderBy())) {
@@ -129,6 +132,40 @@ public class BlogDaoImpl implements BlogDao {
 		}
 		criteria.setFirstResult(firstResult);
 		criteria.setMaxResults(maxResults);
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
+		List<Blog> list = criteria.list();
+		return list;
+	}
+	
+	public List<Blog> findBlogListLikeBlog(Blog blog, OrderProperty[] op,
+			int firstResult, int maxResults) {
+		Criteria criteria = this.getSessionFactory().getCurrentSession().createCriteria(Blog.class);
+		if(blog!=null){
+			Example example = Example.create(blog).excludeNone().excludeZeroes();
+			example.enableLike(MatchMode.ANYWHERE);
+			criteria.add(example);
+			if(blog.getCategory()!=null){
+				criteria.add(Restrictions.eq("category", blog.getCategory()));
+			}
+		}
+		criteria.createAlias("blogView", "blogView", Criteria.LEFT_JOIN);
+		if (op != null && op.length > 0) {
+			for (int i = 0; i < op.length; i++) {
+				if (StringUtils.isNotBlank(op[i].getOrderBy())) {
+					if (op[i].getAscOrDesc() == EyougoConstant.ORDER_ASC) {
+						criteria.addOrder(Order.asc(op[i].getOrderBy()));
+					}
+					if (op[i].getAscOrDesc() == EyougoConstant.ORDER_DESC) {
+						criteria.addOrder(Order.desc(op[i].getOrderBy()));
+					}
+				}
+			}
+		}
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(maxResults);
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
 		List<Blog> list = criteria.list();
 		return list;
 	}
@@ -143,7 +180,8 @@ public class BlogDaoImpl implements BlogDao {
 				criteria.add(Restrictions.eq("category", blog.getCategory()));
 			}
 		}
-		
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
 		criteria.setProjection(Projections.rowCount());
 		return (Long)criteria.uniqueResult();
 	}
@@ -163,6 +201,8 @@ public class BlogDaoImpl implements BlogDao {
 			}	
 		}
 		criteria=criteria.setProjection( projectionList ) ;
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
 		List<Blog> list = criteria.list();
 		return list;
 	}
@@ -183,6 +223,8 @@ public class BlogDaoImpl implements BlogDao {
 				}
 			}
 		}
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
 		criteria.setFirstResult(0);
 		criteria.setMaxResults(1);
 		Blog aBlog = (Blog)criteria.uniqueResult();
@@ -205,6 +247,8 @@ public class BlogDaoImpl implements BlogDao {
 				}
 			}
 		}
+		criteria.setCacheable(true);
+		criteria.setCacheRegion("blogCache");
 		criteria.setFirstResult(0);
 		criteria.setMaxResults(1);
 		Blog aBlog = (Blog)criteria.uniqueResult();

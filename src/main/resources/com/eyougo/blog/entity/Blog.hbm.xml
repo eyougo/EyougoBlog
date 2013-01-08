@@ -4,6 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.eyougo.blog.hbxml">
   <class name="com.eyougo.blog.entity.Blog" table="BLOG_BLOGS" dynamic-update="true" dynamic-insert="true">
+    <cache usage="nonstrict-read-write" region="blogCache"/>
   	<id name="id">
 		<generator class="identity" />
   	</id>
@@ -13,7 +14,6 @@
   	<property name="date">
   		<column name="date" sql-type="datetime"></column>
   	</property>
-  	<property name="bit"></property>
   	<property name="commentsNum"></property>
   	<property name="top"/>
   	<property name="isDraft" type="java.lang.Boolean"/>
@@ -21,6 +21,7 @@
   	<property name="emotion"></property>
   	<property name="cmtUser"></property>
   	<many-to-one name="category" column="category_id" fetch="join"></many-to-one>
+  	<one-to-one name="blogView" />
   	<set name="comments"  inverse="true" cascade="all" order-by="commentDate asc">
   		<key column="BLOG_ID" />
   		<one-to-many  class="com.eyougo.blog.entity.Comment"/>
