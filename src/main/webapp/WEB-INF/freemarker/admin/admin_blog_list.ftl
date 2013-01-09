@@ -102,7 +102,7 @@
       </div></td>
     <td class="tdbg">${blog.category.category}</td>
     <td class="tdbg"><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">${blog.title}</a></td>
-    <td class="tdbg">${blog.bit}/${blog.commentsNum}</td>
+    <td class="tdbg">${blog.blogView.view}/${blog.commentsNum}</td>
     <td class="tdbg">${blog.date}</td>
     <td class="tdbg" width="5%">
     	<div align="center">

@@ -94,7 +94,6 @@ function checkpostdata()
   document.getElementById("title").focus();
   return false;
   }
-  alert(getEditorTextContents("content"));
   if(getEditorTextContents("content").trim()=="")
   {alert("内容不能为空");
   return false;

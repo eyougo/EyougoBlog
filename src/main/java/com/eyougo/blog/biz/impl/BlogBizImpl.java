@@ -15,13 +15,16 @@ import com.eyougo.blog.comm.EyougoConstant;
 import com.eyougo.blog.comm.OrderProperty;
 import com.eyougo.blog.comm.Pager;
 import com.eyougo.blog.dao.BlogDao;
+import com.eyougo.blog.dao.BlogViewDao;
 import com.eyougo.blog.dao.CategoryDao;
 import com.eyougo.blog.entity.Blog;
+import com.eyougo.blog.entity.BlogView;
 import com.eyougo.blog.entity.Category;
 
 public class BlogBizImpl implements BlogBiz {
 	private BlogDao blogDao;
 	private CategoryDao categoryDao;
+	private BlogViewDao blogViewDao;
 
 	@Override
 	public Blog saveBlog(Blog blog) throws InternalException {
@@ -65,7 +68,12 @@ public class BlogBizImpl implements BlogBiz {
 	@Override
 	public Blog createBlog(Blog blog) throws InternalException {
 		blog.setCommentsNum(0);
-		return this.saveBlog(blog);
+		blog = this.saveBlog(blog);
+		BlogView blogView = new BlogView();
+		blogView.setBlog(blog);
+		blogView.setView(0);
+		blogViewDao.saveBlogView(blogView);
+		return blog;
 	}
 
 	@Override
@@ -89,7 +97,13 @@ public class BlogBizImpl implements BlogBiz {
 		}
 		blog.setSummary(summary);
 		blog.setCommentsNum(0);
-		return this.saveBlog(blog);
+		
+		blog = this.saveBlog(blog);
+		BlogView blogView = new BlogView();
+		blogView.setBlog(blog);
+		blogView.setView(0);
+		blogViewDao.saveBlogView(blogView);
+		return blog;
 	}
 
 	@Override
@@ -255,6 +269,10 @@ public class BlogBizImpl implements BlogBiz {
 
 	public void setCategoryDao(CategoryDao categoryDao) {
 		this.categoryDao = categoryDao;
+	}
+
+	public void setBlogViewDao(BlogViewDao blogViewDao) {
+		this.blogViewDao = blogViewDao;
 	}
 
 }

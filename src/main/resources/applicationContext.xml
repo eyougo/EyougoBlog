@@ -146,6 +146,7 @@
 	<bean id="blogBiz" class="com.eyougo.blog.biz.impl.BlogBizImpl">
 		<property name="blogDao" ref="blogDao" />
 		<property name="categoryDao" ref="categoryDao" />
+		<property name="blogViewDao" ref="blogViewDao" />
 	</bean>
 	
 	<bean id="blogViewBiz" class="com.eyougo.blog.biz.impl.BlogViewBizImpl">

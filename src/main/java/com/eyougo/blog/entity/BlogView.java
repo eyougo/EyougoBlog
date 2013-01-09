@@ -12,6 +12,7 @@ public class BlogView {
 	}
 	public void setBlog(Blog blog) {
 		this.blog = blog;
+		blog.setBlogView(this);
 	}
 	public Integer getBlogId() {
 		return blogId;
