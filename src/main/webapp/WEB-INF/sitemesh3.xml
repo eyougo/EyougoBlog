@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+	<mapping>
+		<path>/*</path>
+		<decorator>/sidebar</decorator>
+		<decorator>/main</decorator>
+	</mapping>
+	<mapping path="/admin/*" exclude="true" />
+	<mapping path="/js/*" exclude="true" />
+	<mapping path="/css/*" exclude="true" />
+	<mapping path="/fckeditor/*" exclude="true" />
+</sitemesh>

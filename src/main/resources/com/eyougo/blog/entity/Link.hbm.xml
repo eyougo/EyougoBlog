@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.eyougo.blog.hbxml">
+  <class name="com.eyougo.blog.entity.Link" table="BLOG_LINKS" dynamic-update="true">
+  	<id name="id">
+		<generator class="identity" />
+  	</id>
+  	<property name="linkname"/>
+  	<property name="linkurl"/>
+  	<property name="linklogo"/>
+  	<property name="show" type="java.lang.Boolean" column="ishow"/>
+  	<property name="emotion" type="int"></property>
+  </class>
+</hibernate-mapping>

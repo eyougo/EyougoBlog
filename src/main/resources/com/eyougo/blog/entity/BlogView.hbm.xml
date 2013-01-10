@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.eyougo.blog.hbxml">
+  <class name="com.eyougo.blog.entity.BlogView" table="BLOG_BLOGVIEW">
+    <cache usage="read-write" region="blogViewCache"/>
+  	<id name="blogId" column="blog_id">
+		 <generator class="foreign">  
+              <param name="property">blog</param>  
+         </generator>
+  	</id>
+  	<property name="view" not-null="true" />
+  	<one-to-one name="blog"  constrained="true" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages/admin</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 自动扫描的包名 -->
+	<context:component-scan base-package="com.eyougo.blog.web" />
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven />
+	<!-- 视图解释类 -->
+	<bean id="jspResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="/WEB-INF/jsp" />
+		<property name="suffix" value="" /><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	<bean id="freemarkerResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="order" value="1" />
+		<property name="prefix" value="" />
+		<property name="suffix" value="" />
+		<property name="contentType" value="text/html;charset=utf-8" />
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.freemarker.FreeMarkerView
+			</value>
+		</property>
+		<property name="viewNames" value="*.ftl" />
+		<property name="requestContextAttribute" value="rc" />
+		<!--exposeRequestAttributes会将springMicroHelper也进行传递 sitemesh传递request给装饰器时和装饰页面本身的springMicroHelper造成冲突 参见AbstractTemplateView的renderMergedOutputModel方法 <property 
+			name="exposeRequestAttributes" value="true" /> <property name="allowRequestOverride" value="true" /> -->
+	</bean>
+	<!-- 这里定义freemarker.properties文件的加载，和后面的对应。 -->
+	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:freemarker.properties" />
+	</bean>
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="templateLoaderPath" value="/WEB-INF/freemarker" /> <!-- 模板加载路径 -->
+		<property name="freemarkerSettings" ref="freemarkerConfiguration" />
+	</bean>
+
+	<bean id="exceptionResolver" class="com.eyougo.blog.web.resolver.OutputStackSimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>/error.ftl</value>
+		</property>
+		<property name="defaultStatusCode">
+			<value>500</value>
+		</property>
+		<property name="warnLogCategory">
+			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
+		</property>
+	</bean>
+
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean class="com.eyougo.blog.web.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- 对静态资源文件的访问 -->
+	<mvc:resources mapping="/images/**" location="/images/" cache-period="31556926" />
+	<mvc:resources mapping="/js/**" location="/js/" cache-period="31556926" />
+	<mvc:resources mapping="/css/**" location="/css/" cache-period="31556926" />
+	<mvc:resources mapping="/fckeditor/**" location="/fckeditor/" cache-period="31556926" />
+
+	<!-- captcha -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg type="java.util.Properties">
+					<props>
+						<prop key="kaptcha.image.width">80</prop>
+						<prop key="kaptcha.image.height">25</prop>
+						<prop key="kaptcha.textproducer.font.size">23</prop>
+						<prop key="kaptcha.textproducer.char.string">0123456789</prop>
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+</beans>

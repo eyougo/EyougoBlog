@@ -1,0 +1,96 @@
+BODY
+{
+	FONT-SIZE: 14px;
+	text-decoration: none;
+	line-height: 150%;
+	background-color: #D6DFF7;	
+    text-decoration: none;
+    SCROLLBAR-FACE-COLOR: #799ae1;  MARGIN: 0px; FONT: 14px; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1;
+}
+TD
+{
+	FONT-SIZE: 11pt;
+}
+Input
+{
+	FONT-SIZE: 11pt;
+}
+Button
+{
+	FONT-SIZE: 11pt;
+	HEIGHT: 20px; 
+}
+Select
+{
+	FONT-SIZE: 11pt;
+	HEIGHT: 20px;
+}
+A
+{
+	TEXT-DECORATION: none;
+	color: #000000;
+
+}
+A:hover
+{
+	COLOR: #428EFF;
+	text-decoration: underline;
+
+}
+.title
+{
+	background:url(../images/admin/topbg.gif);
+}
+.tablebg{ background-color:#FFFFFF;}
+.border
+{
+	border: 1px solid #003399;
+}
+.tdbg{
+	background:#E4EDF9;
+	height: 24px;
+}
+.topbg
+{
+	background:url(../images/admin/topbg.gif);
+	color: #FFFFFF;
+	font-size:14px;
+	height:24px;
+}
+.ul {
+	width:100%;
+	float:left;
+	margin:0px;
+	background:#FFFFFF;
+	list-style-type:none;
+	padding:0px;
+}
+.ul li {
+	float:left;
+	width:100%;
+	height:23px;
+	line-height:23px;
+	text-align:left;
+	background:#E7EFFF;
+	padding-top:1px;
+	margin:1px 0px 0px 0px;
+}
+.ul li a:link{
+	text-decoration:none;
+	color:#000000;
+}
+.left {
+	width:49%;
+	float:left;
+	text-align:left;
+	border-right:solid 1px #FFFFFF;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.right {
+	width:50%;
+	float:right;
+	text-align:left;
+	word-wrap:break-word;
+	word-break:break-all;
+}

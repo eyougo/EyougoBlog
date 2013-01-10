@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.eyougo.blog.hbxml">
+  <class name="com.eyougo.blog.entity.Message" table="BLOG_MESSAGES">
+  	<id name="id">
+		<generator class="identity" />
+  	</id>
+  	<property name="title"/>
+  	<property name="content" not-null="true" />
+  	<property name="messageDate">
+  		<column name="messagedate" sql-type="datetime"></column>
+  	</property>
+  	<component name="contact" class="com.eyougo.blog.entity.Contact">
+  		<property name="nickname"></property>
+  		<property name="homepage"></property>
+  		<property name="qq"></property>
+  		<property name="email"></property>
+  		<property name="msn"></property>
+	</component>
+  </class>
+</hibernate-mapping>
+
