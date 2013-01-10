@@ -8,13 +8,14 @@
 		<!-- js calendar -->
 		<link rel="stylesheet" type="text/css" media="all" href="${rc.contextPath}/js/jscalendar/calendar-blue.css"/>
 		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/calendar.js"/>"></script>
+		<script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/lang/cn_utf8.js"/>"></script>
 		<script type="text/javascript" src="${rc.contextPath}/js/jscalendar/calendar-setup.js"/>"></script>
 		<!-- js calendar -->
 		<!-- FCKEditor -->
 		<script type="text/javascript" src="${rc.contextPath}/fckeditor/fckeditor.js"/>"> </script> 
 		<script type="text/javascript"> 
-		window.onload = function() { 
+		$(function() { 
 			var sBasePath = "${rc.contextPath}/fckeditor/";  //获得fckeditor的路径 		
 			var oFCKeditor = new FCKeditor( 'content' ) ; 
 			oFCKeditor.BasePath = sBasePath ; 
@@ -28,7 +29,7 @@
 			obFCKeditor.ToolbarSet = "BlogSummary";
 			obFCKeditor.BasePath = sBasePath ; 
 			obFCKeditor.ReplaceTextarea() ;
-		} 
+		});
 		</script> 
 		<!-- end of FCKEditor --> 
 		<script type="text/javascript" src="${rc.contextPath}/js/buildup.js"></script>

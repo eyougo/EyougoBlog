@@ -6,7 +6,7 @@
                              http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd   
                              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd   
                              http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-
+	
 	<!-- 配置文件 -->
 	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
@@ -166,6 +166,9 @@
 		<property name="categoryDao" ref="categoryDao" />
 		<property name="blogDao" ref="blogDao" />
 	</bean>
+	
+	
+    <import resource="classpath:webserviceBean.xml" />
 	<!-- <bean id="blogConfigBizTarget" class="com.eyougo.blog.biz.impl.BlogConfigBizImpl"> <property name="blogConfigDao" ref="blogConfigDao"></property> </bean> <bean 
 		id="blogConfigBiz" parent="txProxyTemplate"> <property name="target" ref="blogConfigBizTarget" /> </bean> <bean id="messageBizTarget" class="com.eyougo.blog.biz.MessageBiz"> 
 		<property name="messageDao" ref="messageDao"></property> </bean> <bean id="messageBiz" parent="txProxyTemplate"> <property name="target" ref="messageBizTarget" /> 

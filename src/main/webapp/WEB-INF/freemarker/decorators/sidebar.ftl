@@ -58,5 +58,16 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(
+			function() { 
+				$.get('${rc.getContextPath()}/vistors', function(data) {
+				  $('#Categries ul').append('<li>VISTORS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+					  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data + '</a></li>');
+				});
+			} 
+		);
+	
+	</script>
 </body>
 </html>

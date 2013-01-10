@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台管理首页</title>
 <link rel="stylesheet" href="${rc.getContextPath()}/css/admin_style.css">
+<script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
 </head>
 <body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" class="bgcolor">
 <br>
@@ -32,7 +33,7 @@
   </tr>
 </table>
 <div align="center">
-   <table width="98%" border="0" align="center"  cellspacing="1" bgcolor="#FFFFFF" class="border">
+   <table id="infoTable" width="98%" border="0" align="center"  cellspacing="1" bgcolor="#FFFFFF" class="border">
   <tr>
     <td class="topbg" height="20"><center><strong><div id="main_middle_title">服务器基本信息</div></strong></center></td>
     </tr>
@@ -103,10 +104,19 @@
 		</div>
 	</td>
   </tr>
-  <s:action name="counter_info" executeResult="true" ignoreContextParams="true" namespace="/"/>
+  
 </table>
-
 </div>
 </body>
+<script type="text/javascript">
+	$(
+		function() { 
+			$.get('${rc.getContextPath()}/admin/counter/info', function(data) {
+			  $('#infoTable').append(data);
+			});
+		} 
+	);
+
+</script>
 </html>
 

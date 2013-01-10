@@ -9,7 +9,7 @@ import javax.jws.WebService;
  *
  */
 //JAX-WS必需的标注
-@WebService
+@WebService(targetNamespace="http://biz.counter.eyougo.com/")
 public interface CounterBiz {
 	/**
 	 * 将计数器加1
