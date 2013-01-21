@@ -46,6 +46,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/eyougo/blog/entity/BlogConfig.hbm.xml</value>
+				<value>com/eyougo/blog/entity/About.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Category.hbm.xml</value>
 				<value>com/eyougo/blog/entity/Blog.hbm.xml</value>
 				<value>com/eyougo/blog/entity/BlogView.hbm.xml</value>
@@ -111,6 +112,9 @@
 	<bean id="blogConfigDao" class="com.eyougo.blog.dao.hbimpl.BlogConfigDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="aboutDao" class="com.eyougo.blog.dao.hbimpl.AboutDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="blogDao" class="com.eyougo.blog.dao.hbimpl.BlogDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -143,6 +147,10 @@
 	    <property name="blogConfigDao" ref="blogConfigDao" />
 	</bean>
 
+	<bean id="aboutBiz" class="com.eyougo.blog.biz.impl.AboutBizImpl">
+		<property name="aboutDao" ref="aboutDao" />
+	</bean>
+	
 	<bean id="blogBiz" class="com.eyougo.blog.biz.impl.BlogBizImpl">
 		<property name="blogDao" ref="blogDao" />
 		<property name="categoryDao" ref="categoryDao" />

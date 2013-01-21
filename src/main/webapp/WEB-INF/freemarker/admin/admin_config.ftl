@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link rel="stylesheet" href="${rc.getContextPath()}/css/admin_style.css"/>
-<title>日志管理</title>
+<title>配置管理</title>
 </head>
 <body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" class="bgcolor">
 <center>

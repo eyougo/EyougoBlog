@@ -7,18 +7,19 @@
 <body>
 		<div id="mainbody">
 		<h5>${category.category}</h5>
+		<div id="nr">
 		<#list blogList as blog>
-			<div id="nr">
-				<h2><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank"><b>${blog.title}</b></a></h2>
-				<div class="sm"><p>${blog.summary}</p></div> 
-				<div class="m2"><a href="${rc.getContextPath()}/blog/view/${blog.id}" class="bl" target="_blank">Read More</a></div>
-				<h3>
-					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}-1"/>Category: ${blog.category.category}</a> | 
-					<a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">View: ${blog.blogView.view}</a> | 
-					<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" target="_blank">Comments: ${blog.commentsNum}</a>
-				</h3>
-			</div><br/>
+			<h2><a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank"><b>${blog.title}</b></a></h2>
+			<div class="sm"><p>${blog.summary}</p></div> 
+			<div class="m2"><a href="${rc.getContextPath()}/blog/view/${blog.id}" class="bl" target="_blank">Read More</a></div>
+			<h3>
+				<a href="${rc.getContextPath()}/blog/list/${blog.category.id}-1"/>Category: ${blog.category.category}</a> | 
+				<a href="${rc.getContextPath()}/blog/view/${blog.id}" target="_blank">View: ${blog.blogView.view}</a> | 
+				<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" target="_blank">Comments: ${blog.commentsNum}</a>
+			</h3>
+			<br/>
 		</#list>
+		</div>
 		<br>
 		<center>
 			<#if pager.prePage??><a href="${rc.getContextPath()}/blog/list/${category.id}-${pager.page-1}">Previous</a></#if>

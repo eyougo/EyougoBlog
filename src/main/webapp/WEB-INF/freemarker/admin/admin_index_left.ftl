@@ -188,7 +188,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
             <table width=130 align=center cellpadding=0 cellspacing=0 >
               <tr>
                 <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>
-                <td><a href="admin_Cmt.asp?action=show" target="main">日志评论管理</a></td>
+                <td><a href="${rc.getContextPath()}/admin/about" target="main">关于设置</a></td>
               </tr>
               <tr>
                 <td height=24><img src="${rc.getContextPath()}/images/admin/bullet.gif"></td>

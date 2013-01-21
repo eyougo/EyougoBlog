@@ -38,6 +38,15 @@
         maxElementsOnDisk="10000">
     </cache>
     
+    <cache name="aboutCache"   
+        maxElementsInMemory="100"
+        eternal="false"  
+        overflowToDisk="true"
+        timeToIdleSeconds="36000"
+        timeToLiveSeconds="72000"  
+        maxElementsOnDisk="10000">
+    </cache>
+    
     <cache name="blogViewCache"   
         maxElementsInMemory="1000"
         eternal="false"  

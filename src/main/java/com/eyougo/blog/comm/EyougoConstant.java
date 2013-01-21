@@ -36,10 +36,10 @@ public class EyougoConstant {
 	public static final String ORIGINAL_NOTE = "ORIGINALNOTE";
 	
 	
-	public static final String MASTER_NAME = "MASTERNAME";
-	public static final String MASTER_PHOTO = "MASTERNAME";
-	public static final String MASTER_INTRO = "MASTERNAME";
-	public static final String MASTER_CONTACT = "MASTERNAME";
+	public static final String ABOUT_ID_ME = "aboutMe";
 	
+	public static final String ABOUT_ID_SITE = "aboutSite";
+	
+	public static final String ABOUT_ID_GRAVATAR = "aboutGravatar";
  	
 }

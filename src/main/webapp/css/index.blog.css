@@ -71,6 +71,28 @@ h6{padding:6px;
    font-weight:bold;
    }
 /*********************/
+/* about */
+/*********************/
+.about{
+    	padding:4px;
+	}
+.about a{color:#0e9bfd;
+  text-decoration: none;}
+  
+.about a:hover{color:#00dbfc;
+}
+.about img{
+	float:left;
+	text-align:left;
+	margin-right:20px;
+}
+
+.about ul li{
+	list-style-position:inside;
+	padding-bottom:10px;
+}
+
+/*********************/
 /* container */
 /*********************/      
 #container{
