@@ -48,13 +48,13 @@
 				</ul>
 			</div>
 			<div id="Blogs">
-				<h1>Recent Messages</h1>
+				<h1><a href="${rc.getContextPath()}/message/list/1">Recent Messages</a></h1>
 				<ul>
 					<#list recentMessageList as message>
-					<li><a href="${rc.getContextPath()}/message/list/1" >${message.content}</a></li>
+					<li><a href="${rc.getContextPath()}/message/list/1">${message.content}</a></li>
 					</#list>
 				</ul>
-				<div class="m1"><a href="">More</a></div>
+				<div class="m1"><a href="${rc.getContextPath()}/message/list/1">More</a></div>
 			</div>
 		</div>
 	</div>
