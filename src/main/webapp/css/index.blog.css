@@ -88,8 +88,8 @@ h6{padding:6px;
 }
 
 .about ul li{
+	padding-bottom:7px;
 	list-style-position:inside;
-	padding-bottom:10px;
 }
 
 /*********************/
