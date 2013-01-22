@@ -20,6 +20,7 @@
 					</#list>
 				</ul>
 				</div>
+				<br/>
 				<h3>
 				<div class="bl">个人简介</div>
 				${aboutMe}
