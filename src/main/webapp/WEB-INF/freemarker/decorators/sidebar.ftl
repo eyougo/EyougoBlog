@@ -60,8 +60,7 @@
 		$(
 			function() { 
 				$.get('${rc.getContextPath()}/vistors', function(data) {
-				  $('#Categries ul').append('<li>VISTORS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
-					  '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + data + '</a></li>');
+				  $('#Categries ul').append('<li>VISTORS<span>' + data + '</span></a></li>');
 				});
 			} 
 		);
