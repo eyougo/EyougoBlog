@@ -11,7 +11,7 @@ public class Pager {
 
 	long totalNum = -1; // 记录总数
 
-	int perPageNum = 6; // 每页显示记录数
+	int perPageNum = 7; // 每页显示记录数
 
 	private int navigatePageNum=6; //导航页码数
 	
