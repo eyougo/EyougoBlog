@@ -57,7 +57,7 @@
 				<h3 class="bb">
 					View: ${blog.blogView.view} | 
 					<a href="${rc.getContextPath()}/blog/view/${blog.id}#comments" class="bl">Comments: ${blog.commentsNum}</a> |
-					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}" class="bl">Category: ${blog.category.category}</a>
+					<a href="${rc.getContextPath()}/blog/list/${blog.category.id}-1" class="bl">Category: ${blog.category.category}</a>
 					<#if originalNote??>
 					 | ${originalNote}
 					</#if>
