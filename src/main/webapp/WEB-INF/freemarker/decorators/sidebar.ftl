@@ -14,14 +14,12 @@
 					<#list categoryList as category>
 					<li>
 						<a href="${rc.getContextPath()}/blog/list/${category.id}-1" title="${category.category}">${category.category}
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${categoryNumMap[category.category]}</a>
+						<span>${categoryNumMap[category.category]}</span></a>
 					</li>
 					</#list>
 					<li>
 						<a href="${rc.getContextPath()}/message/list/1" title="MESSAGES">MESSAGES
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;${messageNum}</a>
+						<span>${messageNum}</span></a>
 					</li>
 					<#--
 					<li>

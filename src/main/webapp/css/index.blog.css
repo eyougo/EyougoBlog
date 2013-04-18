@@ -130,6 +130,14 @@ h6{padding:6px;
 	     width:240px;
 	     height:100%;
 		 }
+		 
+#sidebar #Categries li{
+		width:160px;
+}
+
+#sidebar #Categries li span{
+        float:right;
+}
 
 /*********************/
 /* more */
