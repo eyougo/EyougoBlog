@@ -20,6 +20,9 @@
 	<!-- 配置本博客使用的计数器 -->
 	<bean id="eyougoCounterBiz" class="com.eyougo.blog.biz.impl.EyougoCounterBizImpl">
    		<property name="counterBiz" ref="counterBiz"></property>
+   		<property name="counterSwitch">
+   			<value>${counter.switch}</value>
+   		</property>
    		<property name="username">
    			<value>${counter.username}</value>
    		</property>
