@@ -55,6 +55,17 @@
 				<div class="m1"><a href="${rc.getContextPath()}/message/list/1">More</a></div>
 			</div>
 		</div>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-4332160032993197";
+		/* 边栏广告 */
+		google_ad_slot = "7349552637";
+		google_ad_width = 160;
+		google_ad_height = 600;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
 	</div>
 	<script type="text/javascript">
 		$(
