@@ -8,6 +8,25 @@
 	<div id="pagebody">
 		<sitemesh:write property="body"/>
 		<div id="sidebar">
+			<div id="SideAds">
+			<style type="text/css">
+			@import url(http://www.google.com/cse/api/branding.css);
+			</style>
+			<div class="cse-branding-bottom" style="background-color:#FFFFFF;color:#000000">
+			  <img src="http://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />
+			  <div class="cse-branding-form">
+			    <form action="http://www.google.com.hk" id="cse-search-box" target="_blank">
+			      <div>
+			        <input type="hidden" name="ie" value="UTF-8" />
+			        <input type="text" name="q" size="18" />
+			        <input type="submit" name="sa" value="Go!" />
+        			<input type="radio" name="cx" value="partner-pub-4332160032993197:9046611839" />本站
+			        <input type="radio" name="cx" value="partner-pub-4332160032993197:1942147434" />全网
+			      </div>
+			    </form>
+			  </div>	  
+			</div>
+			</div>
 			<div id="Categries">
 				<h1>Categries</h1>
 				<ul>
@@ -37,7 +56,7 @@
 				</ul>
 				<div class="m1"><a href="/${rc.getContextPath()}/blog/list/0-1">More</a></div>
 			</div>
-			<div id="Blogs">
+			<div id="Comments">
 				<h1>Recent Comments</h1>
 				<ul>
 					<#list recentCommentList as comment>
@@ -45,7 +64,7 @@
 					</#list>
 				</ul>
 			</div>
-			<div id="Blogs">
+			<div id="Messages">
 				<h1><a href="${rc.getContextPath()}/message/list/1">Recent Messages</a></h1>
 				<ul>
 					<#list recentMessageList as message>
@@ -54,18 +73,20 @@
 				</ul>
 				<div class="m1"><a href="${rc.getContextPath()}/message/list/1">More</a></div>
 			</div>
+			<div id="SideAds">
+				<script type="text/javascript"><!--
+				google_ad_client = "ca-pub-4332160032993197";
+				/* 边栏广告 */
+				google_ad_slot = "7349552637";
+				google_ad_width = 160;
+				google_ad_height = 600;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</div>
 		</div>
-		<script type="text/javascript"><!--
-		google_ad_client = "ca-pub-4332160032993197";
-		/* 边栏广告 */
-		google_ad_slot = "7349552637";
-		google_ad_width = 160;
-		google_ad_height = 600;
-		//-->
-		</script>
-		<script type="text/javascript"
-		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
 	</div>
 	<script type="text/javascript">
 		$(

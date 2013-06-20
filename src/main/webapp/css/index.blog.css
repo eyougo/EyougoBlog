@@ -138,6 +138,50 @@ h6{padding:6px;
 #sidebar #Categries li span{
         float:right;
 }
+#sidebar ul{
+		    padding-left:9px;
+            text-align:left;
+		    list-style-type:none;
+		    display: block;
+		   }
+#sidebar ul li{line-height:28px;
+               padding-left:12px;
+               overflow:hidden;
+               text-overflow:ellipsis;
+               white-space:nowrap;
+               width:205px;
+               background:url(../images/dd.gif) no-repeat left 12px;
+		   }
+#sidebar ul li img{
+			  	border:0px;
+		   }
+#login{border-bottom:1px dashed #DCDCDC;}
+#login td{text-align:center;}
+.STYLE2 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.username{height:14px;
+          border:1px solid #DCDCDC;
+          width:90px;
+		  }
+.password{height:14px;
+          border:1px solid #DCDCDC;
+          width:90px;
+		  }
+.lo{padding:6px;
+    padding-left:7px;}
+.re{padding:6px;
+    padding-right:7px;
+   }		  
+#Categries {border-bottom:1px dashed #DCDCDC;}
+#Blogs{border-bottom:1px dashed #DCDCDC;}
+#comments{border-bottom:1px dashed #DCDCDC;}
+#Messages{border-bottom:1px dashed #DCDCDC;}
+#Statistics{border-bottom:1px dashed #DCDCDC;}
+#links{border-bottom:1px dashed #DCDCDC;}
+#SideAds{text-align:center;padding:16px;}
+#my{}
 
 /*********************/
 /* more */
@@ -181,53 +225,8 @@ h6{padding:6px;
           color:#00dbfc;
 	      text-decoration: none;
           border-bottom:3px solid #00dbfc;
-	      }
+	      }		  		   	   
 
-/*********************/
-/* sidebar */
-/*********************/		  		   	   
-#sidebar ul{
-		    padding-left:9px;
-            text-align:left;
-		    list-style-type:none;
-		    display: block;
-		   }
-#sidebar ul li{line-height:28px;
-               padding-left:12px;
-               overflow:hidden;
-               text-overflow:ellipsis;
-               white-space:nowrap;
-               width:205px;
-               background:url(../images/dd.gif) no-repeat left 12px;
-		   }
-#sidebar ul li img{
-			  	border:0px;
-		   }
-#login{border-bottom:1px dashed #DCDCDC;}
-#login td{text-align:center;}
-.STYLE2 {
-	font-size: 14px;
-	font-weight: bold;
-}
-.username{height:14px;
-          border:1px solid #DCDCDC;
-          width:90px;
-		  }
-.password{height:14px;
-          border:1px solid #DCDCDC;
-          width:90px;
-		  }
-.lo{padding:6px;
-    padding-left:7px;}
-.re{padding:6px;
-    padding-right:7px;
-   }		  
-#Categries {border-bottom:1px dashed #DCDCDC;}
-#Blogs{border-bottom:1px dashed #DCDCDC;}
-#comments{border-bottom:1px dashed #DCDCDC;}
-#Statistics{border-bottom:1px dashed #DCDCDC;}
-#links{border-bottom:1px dashed #DCDCDC;}
-#my{}
 /*********************/
 /* mainbody */
 /*********************/
