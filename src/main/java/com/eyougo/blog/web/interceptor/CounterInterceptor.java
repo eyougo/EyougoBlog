@@ -31,8 +31,8 @@ public class CounterInterceptor extends HandlerInterceptorAdapter{
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		HttpSession session = request.getSession();
 		if (StringUtils.equalsIgnoreCase("on", counterSwitch)) {
+			HttpSession session = request.getSession();
 			//从session中获取counter属性		
 			Object counter_key= session.getAttribute(EyougoConstant.COUNTER_KEY);
 			//如果session中没有counter属性
