@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.eyougo.blog.hbxml">
+<hibernate-mapping package="com.eyougo.blog.entity">
   <class name="com.eyougo.blog.entity.Message" table="BLOG_MESSAGES">
   	<id name="id">
 		<generator class="identity" />

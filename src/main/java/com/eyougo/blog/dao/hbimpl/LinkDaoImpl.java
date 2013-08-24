@@ -91,6 +91,8 @@ public class LinkDaoImpl implements LinkDao {
 				}
 			}
 		}
+        criteria.setCacheable(true);
+        criteria.setCacheRegion("linkCache");
 		List<Link> list = criteria.list();
 		return list;
 	}

@@ -169,16 +169,11 @@ public class BlogBizImpl implements BlogBiz {
 	}
 
 	@Override
-	public int updateBlogsToPublish(List<String> blogIds) throws InternalException {
+	public int updateBlogsToPublish(List<Integer> blogIds) throws InternalException {
 		// 考虑对日志的批量操作并不频繁和大量，故未采用批量更新方式
 		int sucNum = 0;
 		try {
-			for (Iterator<String> iterator = blogIds.iterator(); iterator.hasNext();) {
-				String blogIdStr = iterator.next();
-				Integer blogId = null;
-				if (!blogIdStr.equals("false")) {
-					blogId = Integer.parseInt(blogIdStr);
-				}
+			for (Integer blogId:blogIds) {
 				Blog blog = this.getBlogById(blogId);
 				blog.setIsDraft(false);
 				this.saveBlog(blog);
@@ -191,15 +186,10 @@ public class BlogBizImpl implements BlogBiz {
 	}
 
 	@Override
-	public int updateBlogsToCategory(List<String> blogIds, Integer categoryId) throws InternalException {
+	public int updateBlogsToCategory(List<Integer> blogIds, Integer categoryId) throws InternalException {
 		int sucNum = 0;
 		try {
-			for (Iterator<String> iterator = blogIds.iterator(); iterator.hasNext();) {
-				String blogIdStr = iterator.next();
-				Integer blogId = null;
-				if (!blogIdStr.equals("false")) {
-					blogId = Integer.parseInt(blogIdStr);
-				}
+			for (Integer blogId:blogIds) {
 				Blog blog = this.getBlogById(blogId);
 				Category category = this.getCategoryDao().loadCategoryById(categoryId);
 				blog.setCategory(category);
@@ -213,15 +203,10 @@ public class BlogBizImpl implements BlogBiz {
 	}
 
 	@Override
-	public int deleteBlogs(List<String> blogIds) throws InternalException {
+	public int deleteBlogs(List<Integer> blogIds) throws InternalException {
 		int sucNum = 0;
 		try {
-			for (Iterator<String> iterator = blogIds.iterator(); iterator.hasNext();) {
-				String blogIdStr = iterator.next();
-				Integer blogId = null;
-				if (!blogIdStr.equals("false")) {
-					blogId = Integer.parseInt(blogIdStr);
-				}
+			for (Integer blogId:blogIds) {
 				boolean suc = this.deleteBlogById(blogId);
 				if (suc) {
 					sucNum++;

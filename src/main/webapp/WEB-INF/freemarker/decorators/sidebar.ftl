@@ -73,6 +73,14 @@
 				</ul>
 				<div class="m1"><a href="${rc.getContextPath()}/message/list/1">More</a></div>
 			</div>
+            <div id="Blogs">
+                <h1>Links</a></h1>
+                <ul>
+                <#list linkList as link>
+                    <li><a href="${link.linkurl}">${link.linkname}</a></li>
+                </#list>
+                </ul>
+            </div>
 			<div id="SideAds">
 				<script type="text/javascript"><!--
 				google_ad_client = "ca-pub-4332160032993197";
@@ -87,16 +95,17 @@
 				</script>
 			</div>
 		</div>
-	</div>
-	<script type="text/javascript">
-		$(
-			function() { 
-				$.get('${rc.getContextPath()}/vistors', function(data) {
-				  $('#Categries ul').append('<li>VISTORS<span>' + data + '</span></a></li>');
-				});
-			} 
-		);
-	
-	</script>
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(
+                function() {
+                    $.get('${rc.getContextPath()}/vistors', function(data) {
+                        $('#Categries ul').append('<li>VISTORS<span>' + data + '</span></a></li>');
+                    });
+                }
+        );
+
+    </script>
 </body>
 </html>

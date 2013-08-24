@@ -1,8 +1,9 @@
 package com.eyougo.blog.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.eyougo.blog.base.exception.InternalException;
+import com.eyougo.blog.biz.BlogConfigBiz;
+import com.eyougo.blog.comm.EyougoConstant;
+import com.eyougo.blog.entity.BlogConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.eyougo.blog.base.exception.InternalException;
-import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.comm.EyougoConstant;
-import com.eyougo.blog.entity.BlogConfig;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/admin/config")

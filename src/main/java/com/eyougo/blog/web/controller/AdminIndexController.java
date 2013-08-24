@@ -1,15 +1,14 @@
 package com.eyougo.blog.web.controller;
 
+import com.eyougo.blog.biz.BlogConfigBiz;
+import com.eyougo.blog.comm.EyougoConstant;
+import com.eyougo.blog.comm.ServerInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.comm.EyougoConstant;
-import com.eyougo.blog.comm.ServerInfo;
 
 @Controller
 @RequestMapping(value="/admin/index")

@@ -1,10 +1,9 @@
 package com.eyougo.blog.web.controller;
 
-import javax.servlet.http.HttpSession;
-
+import com.eyougo.blog.comm.EyougoConstant;
 import org.apache.commons.lang3.StringUtils;
 
-import com.eyougo.blog.comm.EyougoConstant;
+import javax.servlet.http.HttpSession;
 
 public class BaseController {
 	 /**
