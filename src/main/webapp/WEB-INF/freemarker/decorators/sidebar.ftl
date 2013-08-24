@@ -77,7 +77,7 @@
                 <h1>Links</a></h1>
                 <ul>
                 <#list linkList as link>
-                    <li><a href="${link.linkurl}">${link.linkname}</a></li>
+                    <li><a href="${link.linkurl}" target="_blank">${link.linkname}</a></li>
                 </#list>
                 </ul>
             </div>
