@@ -73,7 +73,7 @@
 				</ul>
 				<div class="m1"><a href="${rc.getContextPath()}/message/list/1">More</a></div>
 			</div>
-            <div id="Blogs">
+            <div id="Links">
                 <h1>Links</a></h1>
                 <ul>
                 <#list linkList as link>
@@ -95,7 +95,6 @@
 				</script>
 			</div>
 		</div>
-    </div>
     </div>
     <script type="text/javascript">
         $(

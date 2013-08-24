@@ -6,22 +6,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.eyougo.blog.biz.*;
+import com.eyougo.blog.entity.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eyougo.blog.biz.BlogBiz;
-import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.biz.CategoryBiz;
-import com.eyougo.blog.biz.CommentBiz;
-import com.eyougo.blog.biz.MessageBiz;
-import com.eyougo.blog.entity.Blog;
-import com.eyougo.blog.entity.BlogConfig;
-import com.eyougo.blog.entity.Category;
-import com.eyougo.blog.entity.Comment;
-import com.eyougo.blog.entity.Message;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DecoratorController {
@@ -35,6 +29,10 @@ public class DecoratorController {
 	private CategoryBiz categoryBiz;
 	
 	private BlogConfigBiz blogConfigBiz;
+
+    private LinkBiz linkBiz;
+
+    private EyougoCounterBiz eyougoCounterBiz;
 
 	@RequestMapping(value="/vistors")
 	@ResponseBody
