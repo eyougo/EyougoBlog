@@ -1,9 +1,7 @@
 package com.eyougo.blog.web.controller;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpSession;
-
+import com.eyougo.blog.biz.BlogConfigBiz;
+import com.eyougo.blog.util.EyougoStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -13,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.util.EyougoStringUtil;
+import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(value="/admin/login")

@@ -1,27 +1,14 @@
 package com.eyougo.blog.web.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.eyougo.blog.biz.*;
+import com.eyougo.blog.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eyougo.blog.biz.BlogBiz;
-import com.eyougo.blog.biz.BlogConfigBiz;
-import com.eyougo.blog.biz.CategoryBiz;
-import com.eyougo.blog.biz.CommentBiz;
-import com.eyougo.blog.biz.MessageBiz;
-import com.eyougo.blog.entity.Blog;
-import com.eyougo.blog.entity.BlogConfig;
-import com.eyougo.blog.entity.Category;
-import com.eyougo.blog.entity.Comment;
-import com.eyougo.blog.entity.Message;
+import java.util.*;
 
 @Controller
 public class DecoratorController {
@@ -35,6 +22,8 @@ public class DecoratorController {
 	private CategoryBiz categoryBiz;
 	
 	private BlogConfigBiz blogConfigBiz;
+
+    private LinkBiz linkBiz;
 	
 	@RequestMapping(value="/sidebar")
 	public String sidebar(Model model){
@@ -70,7 +59,10 @@ public class DecoratorController {
 			message.setContent(content);
 		}
 		model.addAttribute("recentMessageList", recentMessageList);
-		return "/decorators/sidebar.ftl";
+		List<Link> linkList = linkBiz.getLinkListForMain(6);
+        model.addAttribute("linkList", linkList);
+
+        return "/decorators/sidebar.ftl";
 	}
 	
 	@RequestMapping(value="/main")
@@ -104,7 +96,14 @@ public class DecoratorController {
 	public void setCategoryBiz(CategoryBiz categoryBiz) {
 		this.categoryBiz = categoryBiz;
 	}
-	@Autowired
+
+    @Autowired
+    @Required
+    public void setLinkBiz(LinkBiz linkBiz) {
+        this.linkBiz = linkBiz;
+    }
+
+    @Autowired
 	@Required
 	public void setBlogConfigBiz(BlogConfigBiz blogConfigBiz) {
 		this.blogConfigBiz = blogConfigBiz;

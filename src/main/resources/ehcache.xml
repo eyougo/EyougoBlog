@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-    xsi:noNamespaceSchemaLocation="../../main/config/ehcache.xsd">  
+    xsi:noNamespaceSchemaLocation="ehcache.xsd">
   
     <diskStore path="java.io.tmpdir" />
     <!--  
@@ -27,8 +27,17 @@
         timeToLiveSeconds="3600"
         overflowToDisk="true"
         maxElementsOnDisk="10000">  
-    </cache> 
-    
+    </cache>
+
+    <cache name="linkCache"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="7200"
+           maxElementsOnDisk="1000">
+    </cache>
+
     <cache name="blogCache"   
         maxElementsInMemory="1000"
         eternal="false"  

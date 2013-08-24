@@ -1,16 +1,15 @@
 package com.eyougo.blog.web.controller;
 
-import java.util.List;
-
+import com.eyougo.blog.biz.AboutBiz;
+import com.eyougo.blog.comm.EyougoConstant;
+import com.eyougo.blog.entity.About;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.eyougo.blog.biz.AboutBiz;
-import com.eyougo.blog.comm.EyougoConstant;
-import com.eyougo.blog.entity.About;
+import java.util.List;
 
 @Controller
 @RequestMapping("/about")

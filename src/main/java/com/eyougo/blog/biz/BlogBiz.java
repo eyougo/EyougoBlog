@@ -29,11 +29,11 @@ public interface BlogBiz {
 
 	boolean deleteBlogById(Integer blogId) throws InternalException;
 
-	int updateBlogsToPublish(List<String> blogIds) throws InternalException;
+	int updateBlogsToPublish(List<Integer> blogIds) throws InternalException;
 
-	int updateBlogsToCategory(List<String> blogIds, Integer categoryId) throws InternalException;
+	int updateBlogsToCategory(List<Integer> blogIds, Integer categoryId) throws InternalException;
 
-	int deleteBlogs(List<String> blogIds) throws InternalException;
+	int deleteBlogs(List<Integer> blogIds) throws InternalException;
 
 	List<Blog> getBlogNumGroupByCategory();
 

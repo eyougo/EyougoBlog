@@ -1,10 +1,9 @@
 package com.eyougo.blog.web.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
+import com.eyougo.blog.base.exception.InternalException;
+import com.eyougo.blog.biz.MessageBiz;
+import com.eyougo.blog.comm.Pager;
+import com.eyougo.blog.entity.Message;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,10 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.eyougo.blog.base.exception.InternalException;
-import com.eyougo.blog.biz.MessageBiz;
-import com.eyougo.blog.comm.Pager;
-import com.eyougo.blog.entity.Message;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/message")

@@ -17,6 +17,7 @@ public class LinkBizImpl implements LinkBiz {
 	private static final Log log = LogFactory.getLog(LinkBizImpl.class);
 	private LinkDao linkDao;
 
+    @Override
 	public Link saveLink(Link link) throws InternalException {
 		try {
 			link = this.getLinkDao().saveLink(link);
@@ -35,9 +36,9 @@ public class LinkBizImpl implements LinkBiz {
 		return link;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.eyougo.blog.biz.impl.LinkBiz#deleteLinkById(java.lang.Integer)
-	 */
+    /* (non-Javadoc)
+     * @see com.eyougo.blog.biz.impl.LinkBiz#deleteLinkById(java.lang.Integer)
+     */
 	@Override
 	public boolean deleteLinkById(Integer linkId) throws InternalException {
 		boolean deleteSuccess = false;

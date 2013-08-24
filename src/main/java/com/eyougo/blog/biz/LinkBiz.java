@@ -10,6 +10,8 @@ public interface LinkBiz {
 
 	Link getLinkById(Integer linkId);
 
+    Link saveLink(Link link) throws InternalException;
+
 	boolean deleteLinkById(Integer linkId) throws InternalException;
 
 	long getAllLinkNum();
@@ -17,7 +19,6 @@ public interface LinkBiz {
 	/**
 	 * @param pager
 	 * @return
-	 * @throws EyougoBlogException
 	 */
 	List<Link> getLinkList(Pager pager);
 

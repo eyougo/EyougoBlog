@@ -9,6 +9,11 @@
 -->
 <title>日志管理</title>
 <script type="text/javascript">
+    $(document).ready(function(){
+        $("#allselect").click(function(){
+            $("input[name='blogIds']").attr("checked",this.checked);
+        });
+    })
  		function pageChange(page){
             $("#page").val(page);
             $("#search").submit();
@@ -57,20 +62,10 @@
 </form>
 
   <script language="JavaScript">
-  function checkAll()
-{
-  for (var i=0;i<document.blogs.elements.length;i++)
-    {
-    var e = document.blogs.elements[i];
-    if (e.name != "allselect" && e.name != "operation")
-       e.checked = document.all.allselect.checked;
-    }
-}
-	function check()
-	{	
+    function checkForm(){
 		var delmore=document.getElementsByName("operation");
 		for (var i=0;i<delmore.length ;i++ )
-		{	
+		{
 		  if (delmore[i].checked)
 			{
 				if (delmore[i].value=="delmore")
@@ -81,7 +76,7 @@
 		}
 	}
   </script>
-  <FORM METHOD=POST ACTION="${rc.getContextPath()}/admin/blog/manage" name="manage" id="manage" onSubmit="return check()">
+  <FORM METHOD=POST ACTION="${rc.getContextPath()}/admin/blog/manage" name="manage" id="manage" onSubmit="return checkForm()">
   <table width="98%" border="0" align=center cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" class="border">
   <tr>
     <td class="topbg" colspan="7"><div align="center">总共搜索到${pager.totalNum}条符合要求的记录</div></td>
@@ -114,7 +109,7 @@
   </#list>
   
  <tr>
-    <td class="tdbg"><input type="checkbox" name="allselect" value="allselect" onClick="javascript:checkAll()"></td>
+    <td class="tdbg"><input type="checkbox" name="allselect" id="allselect" value="allselect"></td>
     <td class="tdbg">全选</td>
     <td class="tdbg"><INPUT TYPE="radio" NAME="operation" value="delmore">删除<INPUT TYPE="radio" NAME="operation" value="moveto">移动到
     <select name="toCategoryId">
