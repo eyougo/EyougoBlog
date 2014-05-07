@@ -20,6 +20,7 @@
 			        <input type="hidden" name="ie" value="UTF-8" />
 			        <input type="text" name="q" size="18" />
 			        <input type="submit" name="sa" value="Go!" />
+                    <br/>
         			<input type="radio" name="cx" value="partner-pub-4332160032993197:9046611839" />本站
 			        <input type="radio" name="cx" value="partner-pub-4332160032993197:1942147434" />全网
 			      </div>
