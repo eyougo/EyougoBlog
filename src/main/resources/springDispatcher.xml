@@ -95,7 +95,7 @@
 						<prop key="kaptcha.image.width">80</prop>
 						<prop key="kaptcha.image.height">25</prop>
 						<prop key="kaptcha.textproducer.font.size">23</prop>
-						<prop key="kaptcha.textproducer.char.string">0123456789</prop>
+						<prop key="kaptcha.textproducer.char.string">0123456789ABCDEFGHGKLMNPQRSTUVWXYZ</prop>
 						<prop key="kaptcha.textproducer.char.length">4</prop>
 						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
 						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
