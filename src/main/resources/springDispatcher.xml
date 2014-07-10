@@ -92,13 +92,14 @@
 			<bean class="com.google.code.kaptcha.util.Config">
 				<constructor-arg type="java.util.Properties">
 					<props>
-						<prop key="kaptcha.image.width">80</prop>
-						<prop key="kaptcha.image.height">25</prop>
-						<prop key="kaptcha.textproducer.font.size">23</prop>
-						<prop key="kaptcha.textproducer.char.string">0123456789ABCDEFGHGKLMNPQRSTUVWXYZ</prop>
-						<prop key="kaptcha.textproducer.char.length">4</prop>
-						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
-						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+						<prop key="kaptcha.image.width">120</prop>
+						<prop key="kaptcha.image.height">32</prop>
+						<prop key="kaptcha.textproducer.font.size">30</prop>
+						<prop key="kaptcha.textproducer.char.string">0123456789ABCDEFGHGKLMNPQRTUVWXYZ</prop>
+						<prop key="kaptcha.textproducer.char.length">5</prop>
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop>
+                        <prop key="kaptcha.noise.color">gray</prop>
+						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
 					</props>
 				</constructor-arg>
 			</bean>
