@@ -19,7 +19,6 @@
 <script type="text/javascript"> 
 		SyntaxHighlighter.config.clipboardSwf = '${rc.getContextPath()}/js/syntaxhighlighter/scripts/clipboard.swf';
 		SyntaxHighlighter.all();
-		
 		$(
 			function() { 
 				var sBasePath = "${rc.getContextPath()}/fckeditor/"  //获得fckeditor的路径 	
@@ -30,7 +29,7 @@
 				oFCKeditor.ToolbarSet = "Comment";
 				oFCKeditor.ReplaceTextarea(); 
 			} 
-		)
+		);
 		
 		function submitComment(){
 			if($.trim($('#nickname').val()) == ''){
