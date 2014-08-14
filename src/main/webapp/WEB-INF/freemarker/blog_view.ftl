@@ -94,6 +94,7 @@
 				</div>
 				<br>
 			</#list>
+            <!--关闭评论页面
 			<div id="pcomment">
 				<h5>Post Comment</h5> 
 				<form method="post" action="${rc.getContextPath()}/blog/addComment" id="comment"> 
@@ -141,7 +142,7 @@
 						</tr>
 					</table>
 				</form>
-			</div>
+			</div> -->
 		</div>  
 </body>
 </html>
