@@ -25,11 +25,13 @@
 		<div id="pagebody">
 			<sitemesh:write property="body"/>
 		</div>
-		<div id="foot">${blogCopyright}</div></div>
+		<div id="foot">
+        ${blogCopyright}
+        <script type="text/javascript">
+            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F98a2a20f690dbcf206d9e4d27fd2a365' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        </div>
 	</div>
-    <script type="text/javascript">
-        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F98a2a20f690dbcf206d9e4d27fd2a365' type='text/javascript'%3E%3C/script%3E"));
-    </script>
 </body>
 </html>
