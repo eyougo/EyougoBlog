@@ -33,6 +33,11 @@ public class IndexController {
 		model.addAttribute("pager", pager);
 		return "/blog_list.ftl";
 	}
+
+    @RequestMapping("/baymax")
+    public String baymax(){
+        return "/baymax.ftl";
+    }
 	@Autowired
 	@Required
 	public void setBlogBiz(BlogBiz blogBiz) {
